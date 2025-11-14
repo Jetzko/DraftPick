@@ -1,0 +1,22 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "A League of Legends Draft and Team Preparation online tool",
+  "main": "main.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jetzko/DraftPick.git"
+  },
+  "author": "Andrea De Filippi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jetzko/DraftPick/issues"
+  },
+  "homepage": "https://github.com/Jetzko/DraftPick#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

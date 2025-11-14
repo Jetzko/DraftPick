@@ -1,0 +1,71 @@
+               ┌──────────────────────────┐
+               │   Riot Developer Portal  │
+               │ (API Key personale, free)│
+               └────────────┬─────────────┘
+                            │
+          ┌────────────────────────────────────┐
+          │                                    │
+          ▼                                    ▼
+┌──────────────────────┐            ┌────────────────────────┐
+│ League API           │            │ Summoner API            │
+│ /lol/league/v4/...   │            │ /lol/summoner/v4/...    │
+│                      │            │                        │
+│  ➤ Restituisce:      │            │  ➤ Da summonerId ottieni│
+│    • summonerId       │            │    puuid (identificatore│
+│    • rank & queue     │            │    universale del player)│
+└────────────┬──────────┘            └──────────┬──────────────┘
+             │                                  │
+             └─────────────┬────────────────────┘
+                           ▼
+                  ┌──────────────────────────┐
+                  │ Match API                │
+                  │ /lol/match/v5/...        │
+                  │                          │
+                  │  ➤ Ottieni:              │
+                  │     - Match IDs (queue=420,440)│
+                  │     - Dati partita completa:   │
+                  │       campioni, KDA, durata,   │
+                  │       esito, lane, team, ecc.  │
+                  └──────────────────────────┘
+                             │
+                             ▼
+                 ┌────────────────────────┐
+                 │  Local DB / JSON store │
+                 │ (puoi usare SQLite,    │
+                 │  JSON file o IndexedDB)│
+                 └──────────┬─────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────┐
+│ Data Processing (tuo script JS)                      │
+│ ──────────────────────────────────────────────────── │
+│ ➤ Filtra: queueId ∈ {420,440}                       │
+│ ➤ Filtra: rank ≥ DIAMOND                            │
+│ ➤ Calcola:                                          │
+│     - Win Rate per campione                          │
+│     - Matchup Win Rate (A vs B)                      │
+│     - KDA medio per intervallo di durata             │
+│ ➤ Aggrega:                                           │
+│     - Archetipi e sinergie                           │
+│ ➤ Output JSON strutturato                            │
+└──────────────────────────────────────────────────────┘
+                            │
+                            ▼
+         ┌────────────────────────────────────────┐
+         │ Data Dragon API                         │
+         │ /cdn/{patch}/data/en_US/champion.json   │
+         │                                          │
+         │ ➤ Classi, ruoli, stats, tags, immagini   │
+         └────────────────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────────┐
+│ Frontend Tool (tuo sito JS)                                │
+│ ─────────────────────────────────────────────────────────── │
+│ ➤ Input: champion pool dei giocatori                       │
+│ ➤ Usa dataset elaborato per:                               │
+│     - Consigliare team composition ottimali                 │
+│     - Suggerire campioni da imparare                       │
+│     - Supportare fase di draft (pick/ban advisor)           │
+│ ➤ Visualizza sinergie, counter, archetipi, win rates, ecc. │
+└────────────────────────────────────────────────────────────┘

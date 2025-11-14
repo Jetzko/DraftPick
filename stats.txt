@@ -1,0 +1,75 @@
+STATISTICHE DA CONSIDERARE:
+TEAM PLAN
+- Champion Pool (S tier, A tier, Counter)
+- Player identity (Playstyle)
+- Classe campioni: 
+  Tank (Vanguard, Guardian), Bruiser (Dive, Jaggernauts), Skirmish (Assassin, Duelist),
+  Mage (Poke, Battle, Burst), Marksman (Hypercarry, Burst, Poke), 
+  Support (Enchanter, Catcher), Controller
+- Archetipo team (Protect, Pick, Dive, Split, Poke) Almeno 2 non adiacenti
+- Champion Win rates
+- Power picks, Flex picks e counter picks
+- Statistiche squadra (Danni, Range, Mobilità, Controlli, Utilità, Resistenze)
+- Tipo di danno
+- Wave clear
+- Matchup priority
+- Sinergia campioni (Jungle/Laners danni e controlli), Sinergia Ultimates
+- Item Spikes
+- Game plan e win conditions
+
+DRAFT
+
+Ban prima fase
+Blue: Counter al tuo B1 o Target Ban;
+Red: B1 che non vuoi affrontare o Target Ban;
+
+Picks prima fase
+B1: Blind e/o flex pick
+R1, R2: Counter pick al B1, Blind e/o Flex pick;
+B2, B3: Counter pick a R1 e R2, se hai preso flex pick prova a non romperlo(ADC), cerca sinergie con B1, se ci sono ruoli a rischio ban coprili;
+R3: Un pick che ruoti l'identità del team se questa è counterata, o un counter pick specifico;
+
+Ban seconda fase
+Red: Counter al tuo R4 o target Ban su un ruolo non ancora coperto;
+Blue: Possibili migliori R4, counter ai tuoi B4 e B5, se hai team advantage pivot picks;
+
+Picks seconda fase
+R4: Se hai un flex pick mantienilo, cerca di lasciare ruoli chiave per R5 (Top, Mid o Support);
+B4, B5: Countera il piano del team nemico o rinforza il tuo piano, cerca di evitare champion con forti counter, se non è possibile pivot su pick comp;
+R5: Un counter pick al laner o al piano nemico;
+
+GOLDEN RULE
+Sii creativo con i pick, non esistono pick oggettivamente migliori e giusti.
+
+Randomonium
+https://www.youtube.com/watch?v=i4tPKWt5pBY
+https://www.youtube.com/watch?v=0ym6SX_qjsc
+https://www.youtube.com/watch?v=UD17oTuE4rA
+https://www.youtube.com/watch?v=ib2BFb4tR_I
+
+Chippys
+https://www.youtube.com/watch?v=82aMGky6szk
+
+BritishPoro
+https://www.youtube.com/watch?v=ohjVSB-WPjU
+
+Rogue
+https://www.youtube.com/watch?v=d1wD3AabLb8
+https://www.youtube.com/watch?v=X9CUp5a-uIM
+
+Dati Necessari per il calcolo dei team power points
+- Classe campioni
+- Sinergia campione-comp
+
+- Statistiche Campioni
+            Assassin  Duelist  Diver  Juggernaut  Vanguard  Guardian  Catcher  Enchanter  Artillery  Burst  Battle  Zoner  Sniper  
+Danni       Burst(S)
+Mobilità    
+Range
+Utilità
+Controlli
+Resistenze
+- Matchup Lane
+- Item Spikes
+- Win Rates
+
