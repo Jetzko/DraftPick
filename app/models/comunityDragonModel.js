@@ -19,15 +19,15 @@ const loadFromCache = function (key) {
 //-----------------------------------------------------------------------//
 const loadChampionData = async function () {
   const cacheKey = 'communityDragon_champions';
-  // const cached = loadFromCache(cacheKey);
-  // if (cached) {
-  //   console.log(
-  //     '✅ Dati Community Dragon caricati dalla cache:',
-  //     Object.keys(cached).length,
-  //     'campioni'
-  //   );
-  //   return cached;
-  // }
+  const cached = loadFromCache(cacheKey);
+  if (cached) {
+    console.log(
+      '✅ Dati Community Dragon caricati dalla cache:',
+      Object.keys(cached).length,
+      'campioni'
+    );
+    return cached;
+  }
 
   // 1️⃣ Get Champion List
   const resDDragon = await fetch(

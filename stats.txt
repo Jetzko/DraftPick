@@ -59,16 +59,58 @@ https://www.youtube.com/watch?v=X9CUp5a-uIM
 
 Dati Necessari per il calcolo dei team power points
 - Classe campioni
+        DAMAGE     ENDURANCE     CONTROLS     MOBILITY       UTILITY        RANGE
+ASS    BURST(S)    SUSTAIN(D)    SOFT(C)       BOTH(S)      OFFENSIVE(D)  ABILITIES(C)
+SKI    BOTH(S)      BOTH(B)      HARD(C)    REPOSITION(S)   OFFENSIVE(D)    BOTH(D)
+DIV    BOTH(B)      BOTH(S)      HARD(A)      ENGAGE(S)        BOTH(D)      BOTH(D)
+JUG    DPS(A)      SUSTAIN(S)    BOTH(D)    REPOSITION(C)      BOTH(D)      BOTH(C)
+VAN    DPS(C)    MITIGATION(S)   HARD(S)      ENGAGE(A)     DEFENSIVE(C)  ABILITIES(C)
+WAR    DPS(C)    MITIGATION(S)   HARD(S)      ENGAGE(B)     DEFENSIVE(A)  ABILITIES(D)
+CAT    BOTH(B)   MITIGATION(C)   HARD(S)       BOTH(B)      DEFENSIVE(B)    BOTH(B)
+ENC    BOTH(D)     BOTH(D)       BOTH(A)    REPOSITION(C)     BOTH(S)       BOTH(A)
+ART    BOTH(S)     BOTH(D)       HARD(B)       BOTH(D)      OFFENSIVE(D)  ABILITIES(S)
+BUR    BURST(S)  MITIGATION(D)   HARD(A)      ENGAGE(C)     OFFENSIVE(C)  ABILITIES(A)
+BAT    DPS(S)     SUSTAIN(B)     BOTH(B)    REPOSITION(D)   OFFENSIVE(C)  ABILITIES(B)
+BUL    BOTH(S)    SUSTAIN(D)     SOFT(C)    REPOSITION(B)   OFFENSIVE(C)    BOTH(A)
+HUN    DPS(S)     SUSTAIN(D)     BOTH(B)    REPOSITION(C)     BOTH(B)       BOTH(A)
+HYP    DPS(S)     SUSTAIN(D)     BOTH(C)    REPOSITION(C)   OFFENSIVE(C)   ATTACKS(S)
+ 
+
 - Sinergia campione-comp
+         ATTACK           CATCH           PROTECT           SIEGE           SPLIT
+ASS      J,M(B)           J,M(S)           J,M(D)           J,M(C)          J,M(A)
+SKI     T,J,M(B)         T,J,M(B)         T,J,M(C)         T,J,M(D)        T,J,M(S)
+DIV     T,J,M(A)         T,J,M(S)         T,J,M(B)         T,J,M(D)        T,J,M(B)
+JUG      T,J(C)           T,J(B)           T,J(A)           T,J(B)          T,J(S)
+VAN     T,J,S(S)         T,J,S(A)         T,J,S(B)         T,J,S(C)        T,J,S(C)
+WAR     T,J,S(B)         T,J,S(B)         T,J,S(S)         T,J,S(S)        T,J,S(A)
+CAT     J,M,S(B)         J,M,S(S)         J,M,S(B)         J,M,S(B)        J,M,S(B)
+ENC      M,S(C)           M,S(D)           M,S(S)           M,S(S)          M,S(A)
+ART     M,B,S(A)         M,B,S(B)         M,B,S(D)         M,B,S(S)        M,B,S(D)
+BUR      M,B(S)           M,B(S)           M,B(C)           M,B(A)          M,B(C)
+BAT      T,M(A)           T,M(B)           T,M(A)           T,M(A)          T,M(B)
+BUL    T,J,M,B(A)       T,J,M,B(S)       T,J,M,B(B)       T,J,M,B(A)      T,J,M,B(S)
+HUN     T,M,B(A)         T,M,B(S)         T,M,B(A)         T,M,B(S)        T,M,B(A)
+HYP    T,J,M,B(S)       T,J,M,B(B)       T,J,M,B(S)       T,J,M,B(A)      T,J,M,B(B)
+
+
+TIER LIST
+  ATTACK               CATCH                     PROTECT          SIEGE             SPLIT
+S VAN,BUR,HYP          ASS,DIV,CAT,BUR,BUL,HUN   WAR,ENC,HYP      WAR,ENC,ART,HUN   SKI,JUG,BUL
+A DIV,ART,BAT,HUN,BUL  VAN                       JUG,BAT,HUN      BUR,BAT,BUL,HYP   ASS,WAR,ENC,HUN
+B ASS,SKI,WAR,CAT      SKI,JUG,WAR,ART,BAT,HYP   DIV,VAN,CAT,BUL  JUG,CAT           DIV,CAT,BAT,HYP
+C JUG,ENC              ///                       SKI,BUR          ASS,VAN           VAN,BUR
+D ///                  ENC                       ASS,ART          SKI,DIV           ART
 
 - Statistiche Campioni
-            Assassin  Duelist  Diver  Juggernaut  Vanguard  Guardian  Catcher  Enchanter  Artillery  Burst  Battle  Zoner  Sniper  
-Danni       Burst(S)
+            ASS  SKI  DIV  JUG  VAN  WAR  CAT  ENC  ART  BUR  BAT  ZON  ART  
+Danni       Burst(S)  Both(S)  Both(B)  DPS(A)      
 Mobilità    
 Range
 Utilità
 Controlli
 Resistenze
+
 - Matchup Lane
 - Item Spikes
 - Win Rates
