@@ -4,8 +4,8 @@ TEAM PLAN
 - Player identity (Playstyle)
 - Classe campioni: 
   Tank (Vanguard, Guardian), Bruiser (Dive, Jaggernauts), Skirmish (Assassin, Duelist),
-  Mage (Poke, Battle, Burst), Marksman (Hypercarry, Burst, Poke), 
-  Support (Enchanter, Catcher), Controller
+  Mage (Poke, Battle, Burst), Marksman (Hyper, Bully, Hunter), 
+  Support (Enchanter, Catcher)
 - Archetipo team (Protect, Pick, Dive, Split, Poke) Almeno 2 non adiacenti
 - Champion Win rates
 - Power picks, Flex picks e counter picks
@@ -46,6 +46,7 @@ https://www.youtube.com/watch?v=i4tPKWt5pBY
 https://www.youtube.com/watch?v=0ym6SX_qjsc
 https://www.youtube.com/watch?v=UD17oTuE4rA
 https://www.youtube.com/watch?v=ib2BFb4tR_I
+https://www.youtube.com/watch?v=GEquvRQql7c&t=39s
 
 Chippys
 https://www.youtube.com/watch?v=82aMGky6szk
@@ -59,6 +60,47 @@ https://www.youtube.com/watch?v=X9CUp5a-uIM
 
 Dati Necessari per il calcolo dei team power points
 - Classe campioni
+
+ 
+- Sinergia campione-comp
+         CHARGE           CATCH           PROTECT           SIEGE           SPLIT
+ASS      J,M(B)           J,M(S)           J,M(D)           J,M(C)          J,M(A)
+SKI     T,J,M(B)         T,J,M(B)         T,J,M(C)         T,J,M(D)        T,J,M(S)
+DIV     T,J,M(A)         T,J,M(S)         T,J,M(B)         T,J,M(D)        T,J,M(B)
+JUG      T,J(C)           T,J(B)           T,J(A)           T,J(B)          T,J(S)
+VAN     T,J,S(S)         T,J,S(A)         T,J,S(B)         T,J,S(C)        T,J,S(C)
+WAR     T,J,S(B)         T,J,S(B)         T,J,S(S)         T,J,S(S)        T,J,S(A)
+CAT     J,M,S(B)         J,M,S(S)         J,M,S(B)         J,M,S(B)        J,M,S(B)
+ENC      M,S(C)           M,S(D)           M,S(S)           M,S(S)          M,S(A)
+ART     M,B,S(A)         M,B,S(B)         M,B,S(D)         M,B,S(S)        M,B,S(D)
+BUR      M,B(S)           M,B(S)           M,B(C)           M,B(A)          M,B(C)
+BAT      T,M(A)           T,M(B)           T,M(A)           T,M(A)          T,M(B)
+BUL    T,J,M,B(A)       T,J,M,B(S)       T,J,M,B(A)       T,J,M,B(A)      T,J,M,B(S)
+SCO     T,M,B(S)         T,M,B(A)         T,M,B(B)         T,M,B(S)        T,M,B(A)
+HYP    T,J,M,B(S)       T,J,M,B(C)       T,J,M,B(S)       T,J,M,B(A)      T,J,M,B(B)
+
+
+TIER LIST
+  CHARGE               CATCH                     PROTECT          SIEGE             SPLIT
+S VAN,BUR,HYP,SCO      ASS,DIV,CAT,BUR,BUL       WAR,ENC,HYP      WAR,ENC,ART,SCO   SKI,JUG,BUL
+A DIV,ART,BAT,BUL      VAN,SCO                   JUG,BAT,BUL      BUR,BAT,HYP       ASS,WAR,ENC,SCO
+B ASS,SKI,WAR,CAT      SKI,JUG,WAR,ART,BAT       DIV,VAN,CAT,SCO  JUG,CAT,BUL       DIV,CAT,BAT,HYP
+C JUG,ENC              HYP                       SKI,BUR          ASS,VAN           VAN,BUR
+D ///                  ENC                       ASS,ART          SKI,DIV           ART
+
+CHARGE >>> SIEGE
+SIEGE >>> CATCH
+CATCH >>> SPLIT
+SPLIT >>> PROTECT
+PROTECT >>> CHARGE
+
+CATCH > CHARGE
+CHARGE > SPLIT
+SPLIT > SIEGE
+SIEGE > PROTECT
+PROTECT > CATCH
+
+- Statistiche Campioni
         DAMAGE     ENDURANCE     CONTROLS     MOBILITY       UTILITY        RANGE
 ASS    BURST(S)    SUSTAIN(D)    SOFT(C)       BOTH(S)      OFFENSIVE(D)  ABILITIES(C)
 SKI    BOTH(S)      BOTH(B)      HARD(C)    REPOSITION(S)   OFFENSIVE(D)    BOTH(D)
@@ -72,44 +114,8 @@ ART    BOTH(S)     BOTH(D)       HARD(B)       BOTH(D)      OFFENSIVE(D)  ABILIT
 BUR    BURST(S)  MITIGATION(D)   HARD(A)      ENGAGE(C)     OFFENSIVE(C)  ABILITIES(A)
 BAT    DPS(S)     SUSTAIN(B)     BOTH(B)    REPOSITION(D)   OFFENSIVE(C)  ABILITIES(B)
 BUL    BOTH(S)    SUSTAIN(D)     SOFT(C)    REPOSITION(B)   OFFENSIVE(C)    BOTH(A)
-HUN    DPS(S)     SUSTAIN(D)     BOTH(B)    REPOSITION(C)     BOTH(B)       BOTH(A)
+SCO    DPS(S)     SUSTAIN(D)     BOTH(B)    REPOSITION(C)     BOTH(B)       BOTH(A)
 HYP    DPS(S)     SUSTAIN(D)     BOTH(C)    REPOSITION(C)   OFFENSIVE(C)   ATTACKS(S)
- 
-
-- Sinergia campione-comp
-         ATTACK           CATCH           PROTECT           SIEGE           SPLIT
-ASS      J,M(B)           J,M(S)           J,M(D)           J,M(C)          J,M(A)
-SKI     T,J,M(B)         T,J,M(B)         T,J,M(C)         T,J,M(D)        T,J,M(S)
-DIV     T,J,M(A)         T,J,M(S)         T,J,M(B)         T,J,M(D)        T,J,M(B)
-JUG      T,J(C)           T,J(B)           T,J(A)           T,J(B)          T,J(S)
-VAN     T,J,S(S)         T,J,S(A)         T,J,S(B)         T,J,S(C)        T,J,S(C)
-WAR     T,J,S(B)         T,J,S(B)         T,J,S(S)         T,J,S(S)        T,J,S(A)
-CAT     J,M,S(B)         J,M,S(S)         J,M,S(B)         J,M,S(B)        J,M,S(B)
-ENC      M,S(C)           M,S(D)           M,S(S)           M,S(S)          M,S(A)
-ART     M,B,S(A)         M,B,S(B)         M,B,S(D)         M,B,S(S)        M,B,S(D)
-BUR      M,B(S)           M,B(S)           M,B(C)           M,B(A)          M,B(C)
-BAT      T,M(A)           T,M(B)           T,M(A)           T,M(A)          T,M(B)
-BUL    T,J,M,B(A)       T,J,M,B(S)       T,J,M,B(B)       T,J,M,B(A)      T,J,M,B(S)
-HUN     T,M,B(A)         T,M,B(S)         T,M,B(A)         T,M,B(S)        T,M,B(A)
-HYP    T,J,M,B(S)       T,J,M,B(B)       T,J,M,B(S)       T,J,M,B(A)      T,J,M,B(B)
-
-
-TIER LIST
-  ATTACK               CATCH                     PROTECT          SIEGE             SPLIT
-S VAN,BUR,HYP          ASS,DIV,CAT,BUR,BUL,HUN   WAR,ENC,HYP      WAR,ENC,ART,HUN   SKI,JUG,BUL
-A DIV,ART,BAT,HUN,BUL  VAN                       JUG,BAT,HUN      BUR,BAT,BUL,HYP   ASS,WAR,ENC,HUN
-B ASS,SKI,WAR,CAT      SKI,JUG,WAR,ART,BAT,HYP   DIV,VAN,CAT,BUL  JUG,CAT           DIV,CAT,BAT,HYP
-C JUG,ENC              ///                       SKI,BUR          ASS,VAN           VAN,BUR
-D ///                  ENC                       ASS,ART          SKI,DIV           ART
-
-- Statistiche Campioni
-            ASS  SKI  DIV  JUG  VAN  WAR  CAT  ENC  ART  BUR  BAT  ZON  ART  
-Danni       Burst(S)  Both(S)  Both(B)  DPS(A)      
-Mobilità    
-Range
-Utilità
-Controlli
-Resistenze
 
 - Matchup Lane
 - Item Spikes

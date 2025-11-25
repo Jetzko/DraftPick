@@ -1,0 +1,11 @@
+1. Team Composition Builder
+- Champion Pool Team
+- Streangths and Weaknesses
+- Suggested Strategies 
+- Champ Synergies(Gank Setup, Bot Laners)
+- Champions to Train
+
+2. Theory View
+- Win Conditions for Team Comp.
+- To understand Archetypes
+- Draft Fundamentals
