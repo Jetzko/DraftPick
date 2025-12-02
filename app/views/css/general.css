@@ -1,0 +1,171 @@
+/*
+01 - TYPEGRAPHY SYSTEM
+
+- Font size system (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+- Spacing system (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+Main-title: 
+Title: 
+Paragraph: 
+Span: 
+
+Fonts: Roboto
+
+- Font Weights:
+Default: 400
+Medium: 500 
+Semibold: 600
+Bold: 700
+
+- Line Heights:
+Default:
+Small:
+Medium:
+P Default:
+Large:
+
+- Letter Spacing:
+
+02 - COLORS
+
+- Primary: #e9eaec, #e4b61a, #fbe134, 
+
+- Tints:
+
+- Shades: 
+
+- Greys: #0b0c0c, #2a2e34, #d4d5d6 
+
+03 - IMAGES
+
+
+04 - ICONS
+
+
+05 - SHADOWS
+
+
+06 - BORDER RADIUS
+
+
+07 - WHITESPACES
+
+
+
+Big: 
+Medium: 
+Small:
+
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+--default: 400;
+--medium: 500;
+--semibold: 600;
+--bold: 700;
+
+--highlight: 300;
+--foreground: 200;
+--midground: 100;
+--background: 0;
+
+--main-title: 5.2rem;
+--title: 3rem;
+--subtitle: 2rem;
+--paragraph: 1.6rem;
+--span: 1.2rem;
+
+--black: #0b0c0c;
+--grey: #2a2e34;
+--white: #e9eaec;
+--gold:  #e4b61a;
+--yellow: #fbe134;
+
+--dark-gold: #171203;
+--light-grey: #d4d5d6;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+html{
+    /*10px / 16px = 0.625 => 62.5%*/
+    /*Percentage of user's browser font size*/
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+body{
+    width: 100%;
+}
+
+.hero-section {
+    width: 100%;
+    padding: 2rem 0 0 2rem;
+    background-color: var(--grey);
+    border-bottom: solid 2.5px var(--gold);
+}
+
+.main-title {
+    font-size: var(--main-title);
+    color: var(--gold);
+}
+
+.nav-section{
+    width: 50%;
+}
+
+.nav-list{
+    display: grid;
+    grid-template: 1fr / repeat(3, 1fr);
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.nav-el {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-height: 4.4rem;
+   
+
+}
+
+.nav-btn{
+    font-size: var(--subtitle);
+    display: inline-block;
+    background-color: transparent;
+    color: var(--light-grey);
+    font-weight: var(--semibold);
+    align-self: stretch;
+    text-decoration: none;
+    border: none;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.2rem 1rem;
+}
+
+.nav-btn:hover,
+.nav-btn:focus,
+.nav-btn:active,
+.nav-el.active .nav-btn{
+    color: var(--gold);
+    border-bottom: solid 2px var(--gold);
+}
+
+.section-title {
+    font-size: var(--title);
+}

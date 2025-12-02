@@ -6,6 +6,13 @@ export class ComunityDragonModel {
       baseUrl:
         'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champions',
     };
+
+    this.DDragon = {
+      versionUrl: 'https://ddragon.leagueoflegends.com/api/versions.json',
+      baseUrl: (version, local) =>
+        `https://ddragon.leagueoflegends.com/cdn/${version}/data/${local}`,
+      local: 'it_IT',
+    };
     this.NAME_MAP = {
       // Nome CommunityDragon : Nome DataDragon
       'Aurelion Sol': 'AurelionSol',
@@ -45,6 +52,15 @@ export class ComunityDragonModel {
     const cached = localStorage.getItem(key);
     return cached ? JSON.parse(cached) : null;
   }
+
+  // 🔧 LATEST DATA DRAGON VERSION
+  //------------------------------------------------------------------------//
+  async fetchLatestVersion() {
+    const res = await fetch(this.DDragon.versionUrl);
+    if (!res.ok) throw new Error('💥 Fetching DDragon Version Error 💥');
+    const versions = await res.json();
+    return versions[0];
+  }
   // 🚀 MAIN FUNCTION
   //-----------------------------------------------------------------------//
   async loadChampionData() {
@@ -60,9 +76,7 @@ export class ComunityDragonModel {
     }
 
     // 1️⃣ Get Champion List
-    const resDDragon = await fetch(
-      'https://ddragon.leagueoflegends.com/cdn/15.22.1/data/en_US/champion.json'
-    );
+    const resDDragon = await this.fetchLatestVersion();
     const data = await resDDragon.json();
     const championIDs = Object.values(data.data).map((c) => parseInt(c.key));
     console.log(championIDs);

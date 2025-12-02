@@ -4,13 +4,758 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DraftPick</title>
+    <link rel="stylesheet" href="../views/css/general.css" />
+    <link rel="stylesheet" href="../views/css/teamView.css" />
 
     <script defer type="module" src="../models/ComunityDragonModel.js"></script>
     <script defer type="module" src="../models/ChampionStatsModel.js"></script>
   </head>
   <body>
-    <h1>League of Legends Team Tool</h1>
-    <button class="loadStats">Carica statistiche</button>
-    <div class="output"></div>
+    <header class="hero-section">
+      <h1 class="main-title">DraftPick</h1>
+      <nav class="nav-section">
+        <ul class="nav-list">
+          <li class="nav-el"><button class="nav-btn">Home</button></li>
+          <li class="nav-el"><button class="nav-btn">Theory</button></li>
+          <li class="nav-el active"><button class="nav-btn">Team</button></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="home-view"></section>
+      <section class="theory-view"></section>
+      <section class="team-view active">
+        <h2 class="section-title">Team Builder</h2>
+        <div class="view-section champ-pool">
+          <h3 class="title">Champion Pools</h3>
+
+          <div class="player top">
+            <h4 class="lane">Top</h4>
+            <p class="tier-title">S-TIER</p>
+            <ul class="s tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="tier-title">A-TIER</p>
+            <ul class="a tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="tier-title">SITUATIONAL</p>
+            <ul class="a tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+
+            <p class="player-identity"></p>
+          </div>
+          <div class="player jungle">
+            <h4 class="lane">Jungle</h4>
+            <p class="tier-title">S-TIER</p>
+            <ul class="s tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="tier-title">A-TIER</p>
+            <ul class="a tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="tier-title">SITUATIONAL</p>
+            <ul class="a tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+
+            <p class="player-identity"></p>
+          </div>
+          <div class="player mid">
+            <h4 class="lane">Mid</h4>
+            <p class="tier-title">S-TIER</p>
+            <ul class="s tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="tier-title">A-TIER</p>
+            <ul class="a tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="tier-title">SITUATIONAL</p>
+            <ul class="a tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+
+            <p class="player-identity"></p>
+          </div>
+          <div class="player bot">
+            <h4 class="lane">Bot</h4>
+             <p class="tier-title">S-TIER</p>
+            <ul class="s tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="tier-title">A-TIER</p>
+            <ul class="a tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="tier-title">SITUATIONAL</p>
+            <ul class="a tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="player-identity"></p>
+          </div>
+          <div class="player support">
+            <h4 class="lane">Support</h4>
+            <p class="tier-title">S-TIER</p>
+            <ul class="s tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="tier-title">A-TIER</p>
+            <ul class="a tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="tier-title">SITUATIONAL</p>
+            <ul class="a tier-list">
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+              <li class="champ">
+                <img src="../data/user.jpg" alt="" class="champ-logo" />
+              </li>
+                <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <p class="player-identity"></p>
+          </div>
+        </div>
+
+        <div class="view-section strategies">
+          <h3 class="title">Draft</h3>
+          <div class="content">
+            <div class="blinds">
+              <h4 class="subtitle">Blinds</h4>
+              <ul class="blind-list">
+                <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+                <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+                <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+              </ul>
+            </div>
+            <div class="flexes">
+              <h4 class="subtitle">Flexes</h4>
+              <ul class="flex-list">
+                <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+                <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+              </ul>
+            </div>
+            <div class="suggested-comps">
+              <h4 class="subtitle">Suggested Compositions</h4>
+              <p class="suggest-comp">CHARGE, PROTECT</p>
+            </div>
+            <div class="suggested-trains">
+              <h4 class="subtitle">Champions to Train</h4>
+              <ul class="suggested-list">
+                <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+                <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+                <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+                <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+                <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+                <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="view-section team-comps">
+          <h3 class="title">Your Team Compositions</h3>
+          <div class="comp-list">
+            <button class="add-comp-btn">Add New Composition</button>
+            
+            <ul class="comps">
+             <li class='comp'>
+               <h4 class="comp-name">Composition #1</h4>
+              <div class="front-part">
+              <ul class="comp-champs">
+               <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+               <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+               <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+               <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+               <li class="champ">
+                  <img src="../data/user.jpg" alt="" class="champ-logo" />
+                </li>
+              </ul>
+              <p class="game-plan">
+                <strong>CHARGE COMPOSITION</strong> <br>
+               <strong>Identity:</strong> Teamfight oriented <br>
+               <strong>Game Plan:</strong> Scale early game, teamfight at objectives as 5 <br>
+                <strong>Win Conditions:</strong> Team fighting with ultimates, wombo combo 
+              </p>
+            </div>
+            <div class="details">
+                <ul class="statistics">
+                    <li class="stat">Damage: 10</li>
+                    <li class="stat">Range:  10</li>
+                    <li class="stat">Mobility:  10</li>
+                    <li class="stat">Durability:  10</li>
+                    <li class="stat">Utility:  10</li>
+                    <li class="stat">Controls:  10</li>
+                  </ul>
+                
+                <div class="synergies">
+                 <p class="champ-comp-syn">
+                 <strong>Classes Synergy:</strong> A
+                 </p>
+                 <p class="jungle-syn">
+                  <strong>Gank Potencial</strong><br>
+                  Top: A <br>Mid: B <br>Bot: S 
+                 </p>
+                 <p class="bot-syn">
+                 <strong>Bot-lane Synergy: </strong> A
+                 </p>
+                </div>
+              </div>
+             </li>
+            </ul>
+            
+          </div>
+
+          <div class="comp-builder hidden">
+            <ul class="comp-champs">
+              <li class="champ">
+               <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+                <li class="champ">
+               <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+                <li class="champ">
+               <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+                <li class="champ">
+               <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+                <li class="champ">
+               <button class="add-champ-btn">
+                  <svg
+                    class="add-champ-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+
+            <div class="synergies">
+              <div class="jungle-syn"></div>
+              <div class="bot-syn"></div>
+            </div>
+            <div class="win-conditions"></div>
+            <div class="stats"></div>
+
+            <button class="save-btn">Save Composition</button>
+          </div>
+        </div>
+
+        <div class="champions-section hidden">
+          <div class="champions-container">
+           <div class="search-bar">
+            <label for="search-champ">
+              <svg class='search-svg' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+              </svg>
+            </label>
+            <input type="text" id="search-champ" name="search-champ" placeholder='Search Your Champion'/>
+           </div>
+           <button class="close-btn">
+            <svg class='close-btn-svg' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+           </button>
+           <ul class="champ-grid">
+            <li class="champ"></li>
+           </ul>
+           <button class="confirm">Confirm</button>
+         </div>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
   </body>
 </html>

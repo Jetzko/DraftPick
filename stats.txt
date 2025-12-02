@@ -59,7 +59,123 @@ https://www.youtube.com/watch?v=d1wD3AabLb8
 https://www.youtube.com/watch?v=X9CUp5a-uIM
 
 Dati Necessari per il calcolo dei team power points
-- Classe campioni
+- Classi Campioni:
+
+.Catchers specialize in locking down opponents or, in some cases, 
+entire battlefields by creating intense zones of threat 
+that only foolish enemies would dare wade through. 
+Although not as reliant on their friends as Enchanters, 
+the fragile Catchers greatly benefit from allied presence - 
+both to deter incoming danger and to help capitalize on targets they've locked down.
+
+.Enchanters focus on amplifying their allies' effectiveness 
+by directly augmenting them and defending them from incoming threats. 
+Enchanters themselves are often quite fragile and bring relatively low damage to the table, 
+meaning they really only shine when grouped together with others.
+
+.Juggernauts are melee titans who relentlessly march down the opposition 
+and devastate those foolish enough to get within their grasp. 
+They are the only subclass who excel at both dealing and taking significant amounts of damage, 
+but in turn they have a tough time closing in on targets
+ due to their low range and extremely limited mobility.
+
+.Divers are the more mobile portion of the Fighter class. 
+Divers excel at singling out high-priority targets to blitz toward, 
+immediately forcing those targets (and their teammates) to deal with the diver’s presence. 
+Divers are not as durable as the tanks or juggernauts of the world, 
+but Divers can take their fair share of punishment 
+while bringing enough damage to be a real kill threat if left unchecked.
+
+.Burst mages aim to single out vulnerable targets by locking them down 
+and following up with a devastating barrage of damage from range. 
+They are strongest when using their full suite of spells executed perfectly to maximum effect, 
+and most vulnerable when they cannot deliver.
+
+.Battlemages get into the middle of the fray, seeking to wreak havoc upon the entire enemy team 
+with their overwhelming sustained area damage. 
+Due to their relatively short (but not melee) combat ranges and the need to burn down their opponents over time, 
+Battle Mages have significant defensive capabilities that range from sustaining endlessly 
+to literally defying death for a short period of time.
+
+.Artillery mages are the masters of range, 
+and they leverage that advantage to whittle down their opponents over time from great distances. 
+In turn, Artillery Mages are severely punished when enemies finally succeed in closing in on them,
+due to their extreme fragility and limited mobility.
+
+.Hypercarries are marksmen with the highest damage per second potential of the game.
+They tend to be weak in early game and scale on late. Their goal is to melt enemies in mid-late game teamfights
+due to their toolkit, but need to have team memebers who protect them because of their low mobility.
+
+.Scouts are most well rounded and most spell reliant marksmen, they tend to have more utility then other marksmen's classes, 
+providing vision, controls or good poke damage from their high range spells.
+Scouts are generally good in all pahses of the game and perform in a large variety of compositions.
+
+.Bullies are marksmen with high lane dominance, thanks to their good damage on early game and range,
+their goal is to push out of lane their opponents and take advantage from early kills, towers and
+early objectives. Also they have higher burst damage and less dps, 
+so tend to be less efficient in late team fights.
+
+.Slayers specialize in infiltrating enemy lines with their unrivaled mobility
+ to quickly dispatch high-priority targets. 
+Due to their mostly melee nature, Assassins must put themselves into dangerous positions 
+in order to execute their targets. 
+Luckily, they often have defensive tricks up their sleeves that, if used cleverly, allow them to effectively avoid incoming damage.
+
+.Skirmishers (also known as Duelists) aim to shred through any nearby enemy that approaches. 
+Because Skirmishers lack high-end burst damage or reliable ways of closing in on high-priority targets, 
+they are instead armed with situationally powerful defensive tools to survive in the fray,
+ along with extreme sustained damage to cut down even the most durable targets.
+
+.Vanguards are offensive tanks. 
+Vanguards lead the charge for their team and specialize at bringing the action. 
+Their explosive team fight initiation seeks to catch enemies out of position while allowing allies to follow-up to devastating effect.
+
+.Wardens are defensive tanks. 
+Wardens stand steadfast, seeking to hold the line by persistently locking down any on-comers 
+who try to pass them. Wardens keep their allies out of harm’s way 
+and allow them to safely deal with enemies caught in the fray.
+
+- Archetipi Team:
+1- SPLIT 
+   Key Attributes: Strong duelist, strong wave clear, disengage
+   Identity: Lanes oriented
+   Game Plan: Funnel resorces to split carry, take early advantages, stall team fights to let splitter to push 
+   Win Conditions: Split enemies apart
+   Pros: Massive pressure in multiple lanes
+   Cons: High risk, high macro knowledge required
+
+2- PROTECT
+   Key Attributes: Hyper scaling threat, disengage, utility
+   Identity: Teamfight oriented
+   Game Plan: Scale to late game, do not over aggro, force team fights at objectives when carry is on spike
+   Win Conditions: 5v5 team fights, keep carry alive
+   Pros: Very safe and tilting, strong against popular comps
+   Cons: Must stay grouped as 5, extremely carry dependent
+
+3- CHARGE
+   Key Attributes: At least 1 hard engager, hard cc, massive AOE damage and/or high dps
+   Identity: Teamfight oriented
+   Game Plan: Scale early game, teamfight at objectives as 5 
+   Win Conditions: Team fighting with ultimates, wombo combo
+   Pros: Easy to execute
+   Cons: Ultimate dependent
+
+4- SIEGE
+   Key Attributes: Long range, tower damage, disengage
+   Identity: Objectives oriented
+   Game Plan: Get advantage early game, poke enemies at objectives to make them retire
+   Win Conditions: Grind out opponents, objectives oriented
+   Pros: Great objective control
+   Cons: Required extreme patience and coordination
+
+5- CATCH
+   Key Attributes: Burst damage, single target hard cc, mobility
+   Identity: Skirmish and Kills oriented
+   Game Plan: Get advantage early game, set vision around objectives to ambush, get enemies out of position
+   Win Conditions: Unfair Fights 5v4, vision denial
+   Pros: Punishes mistakes/greed
+   Cons: Weaker 5v5 fighting
+
 
  
 - Sinergia campione-comp
@@ -75,30 +191,30 @@ ENC      M,S(C)           M,S(D)           M,S(S)           M,S(S)          M,S(
 ART     M,B,S(A)         M,B,S(B)         M,B,S(D)         M,B,S(S)        M,B,S(D)
 BUR      M,B(S)           M,B(S)           M,B(C)           M,B(A)          M,B(C)
 BAT      T,M(A)           T,M(B)           T,M(A)           T,M(A)          T,M(B)
-BUL    T,J,M,B(A)       T,J,M,B(S)       T,J,M,B(A)       T,J,M,B(A)      T,J,M,B(S)
+BUL    T,J,M,B(A)       T,J,M,B(S)       T,J,M,B(B)       T,J,M,B(A)      T,J,M,B(S)
 SCO     T,M,B(S)         T,M,B(A)         T,M,B(B)         T,M,B(S)        T,M,B(A)
 HYP    T,J,M,B(S)       T,J,M,B(C)       T,J,M,B(S)       T,J,M,B(A)      T,J,M,B(B)
 
 
 TIER LIST
   CHARGE               CATCH                     PROTECT          SIEGE             SPLIT
-S VAN,BUR,HYP,SCO      ASS,DIV,CAT,BUR,BUL       WAR,ENC,HYP      WAR,ENC,ART,SCO   SKI,JUG,BUL
-A DIV,ART,BAT,BUL      VAN,SCO                   JUG,BAT,BUL      BUR,BAT,HYP       ASS,WAR,ENC,SCO
-B ASS,SKI,WAR,CAT      SKI,JUG,WAR,ART,BAT       DIV,VAN,CAT,SCO  JUG,CAT,BUL       DIV,CAT,BAT,HYP
+S VAN,BUR,HYP,SCO      ASS,DIV,CAT,BUR,BUL       WAR,ENC,HYP      WAR,ENC,ART,      SKI,JUG,BUL
+A DIV,ART,BAT,BUL      VAN,SCO                   JUG,BAT,SCO      BUR,BAT,HYP,BUL   ASS,WAR,ENC,SCO
+B ASS,SKI,WAR,CAT      SKI,JUG,WAR,ART,BAT       DIV,VAN,CAT,BUL  JUG,CAT           DIV,CAT,BAT,HYP
 C JUG,ENC              HYP                       SKI,BUR          ASS,VAN           VAN,BUR
 D ///                  ENC                       ASS,ART          SKI,DIV           ART
 
+SPLIT >>> PROTECT
+PROTECT >>> CHARGE
 CHARGE >>> SIEGE
 SIEGE >>> CATCH
 CATCH >>> SPLIT
-SPLIT >>> PROTECT
-PROTECT >>> CHARGE
 
-CATCH > CHARGE
-CHARGE > SPLIT
 SPLIT > SIEGE
 SIEGE > PROTECT
 PROTECT > CATCH
+CATCH > CHARGE
+CHARGE > SPLIT
 
 - Statistiche Campioni
         DAMAGE     ENDURANCE     CONTROLS     MOBILITY       UTILITY        RANGE
