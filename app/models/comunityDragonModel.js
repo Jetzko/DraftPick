@@ -1,7 +1,5 @@
 export class ComunityDragonModel {
   constructor() {
-    // ⚙️ URL CONFIGURATION
-    //------------------------------------------------------------------------//
     this.CDragon = {
       baseUrl:
         'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champions',
@@ -9,12 +7,14 @@ export class ComunityDragonModel {
 
     this.DDragon = {
       versionUrl: 'https://ddragon.leagueoflegends.com/api/versions.json',
-      baseUrl: (version, local) =>
-        `https://ddragon.leagueoflegends.com/cdn/${version}/data/${local}`,
+      baseUrl: (version, locale) =>
+        `https://ddragon.leagueoflegends.com/cdn/${version}/data/${locale}`,
       local: 'it_IT',
+      imageBase: (version) =>
+        `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion`,
     };
+
     this.NAME_MAP = {
-      // Nome CommunityDragon : Nome DataDragon
       'Aurelion Sol': 'AurelionSol',
       "Bel'Veth": 'Belveth',
       "Cho'Gath": 'Chogath',
@@ -38,106 +38,107 @@ export class ComunityDragonModel {
       "K'Sante": 'KSante',
     };
 
-    // GLOBAL SCOPE TO SAVE ALL CHAMPIONS DATA
     this.championsData = null;
   }
 
-  // 💾 CACHING (browser)
-  //------------------------------------------------------------------------//
-  saveToCache(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-  }
+  // saveToCache(key, data) {
+  //   localStorage.setItem(key, JSON.stringify(data));
+  // }
 
-  loadFromCache(key) {
-    const cached = localStorage.getItem(key);
-    return cached ? JSON.parse(cached) : null;
-  }
+  // loadFromCache(key) {
+  //   const cached = localStorage.getItem(key);
+  //   return cached ? JSON.parse(cached) : null;
+  // }
 
-  // 🔧 LATEST DATA DRAGON VERSION
-  //------------------------------------------------------------------------//
   async fetchLatestVersion() {
     const res = await fetch(this.DDragon.versionUrl);
     if (!res.ok) throw new Error('💥 Fetching DDragon Version Error 💥');
     const versions = await res.json();
     return versions[0];
   }
-  // 🚀 MAIN FUNCTION
-  //-----------------------------------------------------------------------//
-  async loadChampionData() {
-    const cacheKey = 'communityDragon_champions';
-    const cached = this.loadFromCache(cacheKey);
-    if (cached) {
-      console.log(
-        '✅ Dati Community Dragon caricati dalla cache:',
-        Object.keys(cached).length,
-        'campioni'
-      );
-      return cached;
-    }
 
-    // 1️⃣ Get Champion List
-    const resDDragon = await this.fetchLatestVersion();
+  // 🔧 Icon URL diretto (Nessun caching!)
+  getIconUrl(championId, version) {
+    return `${this.DDragon.imageBase(version)}/${championId}.png`;
+  }
+
+  async loadChampionData() {
+    // const cacheKey = 'communityDragon_champions';
+    // const cached = this.loadFromCache(cacheKey);
+
+    let latestVersion = await this.fetchLatestVersion();
+
+    // if (cached) {
+    //   console.log('♻️ Dati campioni caricati dalla cache');
+    //   return cached;
+    // }
+
+    // 1️⃣ scarica champion.json
+    const listUrl = `${this.DDragon.baseUrl(
+      latestVersion,
+      this.DDragon.local
+    )}/champion.json`;
+
+    const resDDragon = await fetch(listUrl);
+    if (!resDDragon.ok) throw new Error('💥 Errore caricamento champion.json');
+
     const data = await resDDragon.json();
-    const championIDs = Object.values(data.data).map((c) => parseInt(c.key));
-    console.log(championIDs);
+
+    const championIDs = Object.values(data.data).map((c) => Number(c.key));
+    console.log('🏷️ Champion IDs:', championIDs);
 
     const details = {};
-
-    // 2️⃣ Download in batch
     const batchSize = 10;
+
     for (let i = 0; i < championIDs.length; i += batchSize) {
       const batch = championIDs.slice(i, i + batchSize);
+
       const results = await Promise.allSettled(
         batch.map(async (id) => {
-          const resp = await fetch(`${CDragon.baseUrl}/${id}.json`);
+          const resp = await fetch(`${this.CDragon.baseUrl}/${id}.json`);
           if (!resp.ok) throw new Error(`💥 Error fetching champion ID ${id}`);
           return await resp.json();
         })
       );
 
-      results.forEach((result, index) => {
+      results.forEach((result) => {
         if (result.status === 'fulfilled') {
           const champData = result.value;
           details[champData.name] = champData;
-          console.log(`✅ Downloaded ${champData.name}`);
-        } else {
-          console.warn(`💥 Failed to download champion ID ${batch[index]}`);
+          console.log(`🟢 Scaricato: ${champData.name}`);
         }
       });
 
-      await new Promise((r) => setTimeout(r, 200));
+      await new Promise((r) => setTimeout(r, 150));
     }
 
-    const normalizeChampionName = function (name) {
+    const normalizeChampionName = (name) => {
       let clean = name.trim();
-      // Se esiste nella mappa, restituisci il nome Data Dragon
-      if (NAME_MAP[clean]) return NAME_MAP[clean];
-
-      // Pulizia di base
-      const cleaned = clean.replace(/[^a-zA-Z]/g, '');
-
-      // Capitalizza come DataDragon
-      return cleaned.charAt(0).toUpperCase() + cleaned.slice(1).toLowerCase();
+      if (this.NAME_MAP[clean]) return this.NAME_MAP[clean];
+      return clean
+        .replace(/[^a-zA-Z]/g, '')
+        .replace(/^./, (c) => c.toUpperCase());
     };
 
     const minimalData = {};
+
     for (const champKey in data.data) {
-      const id = data.data[champKey].id;
-      minimalData[id] = {
-        stats: data.data[champKey].stats,
+      const ddragonChamp = data.data[champKey];
+      const normalizedKey = ddragonChamp.id;
+
+      minimalData[normalizedKey] = {
+        stats: ddragonChamp.stats,
       };
     }
 
-    console.log(minimalData);
-
     for (const champ in details) {
       const d = details[champ];
-
       const normalizedKey = normalizeChampionName(d.name);
 
       minimalData[normalizedKey] = {
         ...minimalData[normalizedKey],
         name: champ,
+        icon: this.getIconUrl(normalizedKey, latestVersion),
         championTagInfo: d.championTagInfo,
         playstyleInfo: d.playstyleInfo,
         tacticalInfo: d.tacticalInfo,
@@ -154,25 +155,25 @@ export class ComunityDragonModel {
         })),
       };
     }
-    console.log('✅ All champions downloaded from Community Dragon');
-    this.saveToCache(cacheKey, minimalData);
 
-    return this.minimalData;
+    console.log('🏁 Tutti i campioni caricati');
+
+    // this.saveToCache(cacheKey, minimalData);
+
+    return minimalData;
   }
 
-  // 1️⃣ Download all champions
   async initChampions() {
     if (!this.championsData) {
       this.championsData = await this.loadChampionData();
       console.log(
-        '✅ Tutti i campioni caricati:',
+        '🔥 Campioni caricati:',
         Object.keys(this.championsData).length
       );
     }
     return this.championsData;
   }
 }
-
 // // 2️⃣ Function to get one champion's data
 // export const getChampionData = function (championName) {
 //   if (!championsData) {

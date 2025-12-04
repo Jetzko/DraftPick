@@ -10,12 +10,13 @@ export class ChampionStatsModel {
     this.initChampions = this.cdModel.initChampions.bind(this.cdModel);
 
     this.newChampionsData = null;
-    this.startAnalysis()
-      .then((result) => {
-        this.newChampionsData = result;
-        this.assignSubclasses();
-      })
-      .catch((err) => console.error('startAnalysis error', err));
+
+    // this.startAnalysis()
+    //   .then((result) => {
+    //     this.newChampionsData = result;
+    //     this.assignSubclasses();
+    //   })
+    //   .catch((err) => console.error('startAnalysis error', err));
 
     // this.spellTags = ['<physicalDamage>', '<magicDamage>','<trueDamage>', '<speed>', '<healing>', '<shield>', '<status>'];
     this.classes = {
@@ -313,6 +314,24 @@ export class ChampionStatsModel {
       warden: this.mWardens,
     };
   }
+
+  async init() {
+    try {
+      // avvia l'analisi e attendi il completamento
+      const result = await this.startAnalysis();
+
+      // salva il risultato
+      this.newChampionsData = result;
+      this.assignSubclasses();
+
+      console.log('✅ ChampionStatsModel init completato');
+      return this.newChampionsData;
+    } catch (err) {
+      console.error('❌ ChampionStatsModel init error:', err);
+      throw err;
+    }
+  }
+
   // ---- DETERMINA SE LA SPELL È RILEVANTE ---- //
   // Include solo spell che fanno danno, CC, scudi o cure
   isRelevantSpell(spell) {
@@ -486,5 +505,3 @@ export class ChampionStatsModel {
     return this.classes;
   }
 }
-
-new ChampionStatsModel();

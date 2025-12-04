@@ -169,3 +169,11 @@ body{
 .section-title {
     font-size: var(--title);
 }
+
+.view {
+    visibility: hidden;
+}
+
+.view.active {
+    visibility: visible;
+}

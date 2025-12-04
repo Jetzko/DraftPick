@@ -7,24 +7,23 @@
     <link rel="stylesheet" href="../views/css/general.css" />
     <link rel="stylesheet" href="../views/css/teamView.css" />
 
-    <script defer type="module" src="../models/ComunityDragonModel.js"></script>
-    <script defer type="module" src="../models/ChampionStatsModel.js"></script>
+    <script defer type="module" src="../scripts/main.js"></script>
   </head>
   <body>
     <header class="hero-section">
       <h1 class="main-title">DraftPick</h1>
       <nav class="nav-section">
         <ul class="nav-list">
-          <li class="nav-el"><button class="nav-btn">Home</button></li>
+          <li class="nav-el active"><button class="nav-btn">Home</button></li>
           <li class="nav-el"><button class="nav-btn">Theory</button></li>
-          <li class="nav-el active"><button class="nav-btn">Team</button></li>
+          <li class="nav-el"><button class="nav-btn">Team</button></li>
         </ul>
       </nav>
     </header>
     <main>
-      <section class="home-view"></section>
-      <section class="theory-view"></section>
-      <section class="team-view active">
+      <section class="view" id='home-view'></section>
+      <section class="view" id='theory-view'></section>
+      <section class="view" id='team-view'>
         <h2 class="section-title">Team Builder</h2>
         <div class="view-section champ-pool">
           <h3 class="title">Champion Pools</h3>
@@ -33,15 +32,6 @@
             <h4 class="lane">Top</h4>
             <p class="tier-title">S-TIER</p>
             <ul class="s tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -63,15 +53,6 @@
             </ul>
             <p class="tier-title">A-TIER</p>
             <ul class="a tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -93,15 +74,6 @@
             </ul>
             <p class="tier-title">SITUATIONAL</p>
             <ul class="a tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -128,15 +100,6 @@
             <h4 class="lane">Jungle</h4>
             <p class="tier-title">S-TIER</p>
             <ul class="s tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -158,15 +121,6 @@
             </ul>
             <p class="tier-title">A-TIER</p>
             <ul class="a tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -188,15 +142,6 @@
             </ul>
             <p class="tier-title">SITUATIONAL</p>
             <ul class="a tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -223,15 +168,6 @@
             <h4 class="lane">Mid</h4>
             <p class="tier-title">S-TIER</p>
             <ul class="s tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -253,15 +189,6 @@
             </ul>
             <p class="tier-title">A-TIER</p>
             <ul class="a tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -283,15 +210,6 @@
             </ul>
             <p class="tier-title">SITUATIONAL</p>
             <ul class="a tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -318,15 +236,6 @@
             <h4 class="lane">Bot</h4>
              <p class="tier-title">S-TIER</p>
             <ul class="s tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -348,15 +257,6 @@
             </ul>
             <p class="tier-title">A-TIER</p>
             <ul class="a tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -378,15 +278,6 @@
             </ul>
             <p class="tier-title">SITUATIONAL</p>
             <ul class="a tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -412,15 +303,6 @@
             <h4 class="lane">Support</h4>
             <p class="tier-title">S-TIER</p>
             <ul class="s tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -442,15 +324,6 @@
             </ul>
             <p class="tier-title">A-TIER</p>
             <ul class="a tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
@@ -472,15 +345,6 @@
             </ul>
             <p class="tier-title">SITUATIONAL</p>
             <ul class="a tier-list">
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
-              <li class="champ">
-                <img src="../data/user.jpg" alt="" class="champ-logo" />
-              </li>
                 <button class="add-champ-btn">
                   <svg
                     class="add-champ-svg"
