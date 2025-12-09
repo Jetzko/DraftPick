@@ -9,6 +9,9 @@ export class TeamView {
     this._activeChamp = null;
     this._replaceTarget = null;
     this._deleteEl = document.querySelector('.champ.delete');
+    this.searchInp = document.getElementById('search-champ');
+
+    this.bindSearchInput();
   }
 
   renderChampGrid(champions) {
@@ -169,5 +172,27 @@ export class TeamView {
         });
       });
     }
+  }
+
+  filterChampions(searchTerm) {
+    const search = (searchTerm || '').toLowerCase().trim();
+    const champEls = this.champList.querySelectorAll('.champ:not(.delete)');
+
+    champEls.forEach((li) => {
+      const champKey = (li.dataset.champKey || '').toLowerCase();
+      if (champKey.indexOf(search) > -1) {
+        li.style.display = '';
+      } else {
+        li.style.display = 'none';
+      }
+    });
+  }
+
+  // ---- REGISTRA LISTENER RICERCA INPUT ---- //
+  bindSearchInput() {
+    if (!this.searchInp) return;
+    this.searchInp.addEventListener('input', (e) => {
+      this.filterChampions(e.target.value);
+    });
   }
 }
