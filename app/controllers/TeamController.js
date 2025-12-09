@@ -8,7 +8,7 @@ export class TeamController {
     this.cdModel = new ComunityDragonModel();
     this.champStats = new ChampionStatsModel();
     this.teamView = new TeamView();
-
+    this.champGrid = document.querySelector('.champ-grid');
     this.champions = null;
     this.initAsync();
   }
@@ -36,10 +36,12 @@ export class TeamController {
       console.warn('TeamController.update: champions vuoto');
       return;
     }
-    const champElments = this.teamView.renderChampGrid(this.champions);
     // this.teamView.addChamp();
+    const champElments = this.teamView.renderChampGrid(this.champions);
+    // this.champGrid.querySelectorAll('.champ');
     this.teamView.openChampGrid();
     this.teamView.closeChampGrid();
     this.teamView.addChamp(champElments, this.champions);
+    this.teamView.replaceChampion();
   }
 }

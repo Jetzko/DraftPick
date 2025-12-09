@@ -36,7 +36,7 @@ Large:
 
 - Shades: 
 
-- Greys: #0b0c0c, #2a2e34, #d4d5d6 
+- Greys: #0b0c0c, #2a2e34, #d4d5d6, #191c1f 
 
 03 - IMAGES
 
@@ -87,6 +87,7 @@ Small:
 
 --dark-gold: #171203;
 --light-grey: #d4d5d6;
+--dark-grey: #191c1f; 
 }
 
 *{

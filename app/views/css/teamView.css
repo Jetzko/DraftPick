@@ -110,13 +110,26 @@ padding-bottom: 2rem;
     align-items: center;
     padding-top: 0.8rem;
 }
-    
+
+.champ.delete {
+    color: var(--grey);
+}
+
+.champ.delete .champ-logo {
+    background-color: var(--dark-grey);
+}
+
 .champ-logo,
 .add-champ-btn {  
     border: solid 1px var(--gold);
     width: 8rem;
     height: 8rem;
     border-radius: 2px;
+}
+
+.champ.active .champ-logo,
+.champ.delete.active .champ-logo{
+    box-shadow: 0 0 0 2px var(--gold);
 }
 
 .add-champ-btn {
