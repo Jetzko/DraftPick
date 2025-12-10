@@ -8,10 +8,15 @@ export class TeamView {
     this._champSlot = null;
     this._activeChamp = null;
     this._replaceTarget = null;
+    this._activeEl = null; // salva riferimento all'elemento attivo
     this._deleteEl = document.querySelector('.champ.delete');
     this.searchInp = document.getElementById('search-champ');
+    this._confirmBound = false;
+    this._originalButtons = new Map(); // aggiungi questa riga
+    this._openChampGridBound = false;
 
     this.bindSearchInput();
+    this.bindOpenChampGrid();
   }
 
   renderChampGrid(champions) {
@@ -29,85 +34,120 @@ export class TeamView {
     champions.forEach((c) => {
       const li = document.createElement('li');
       li.classList.add('champ');
-
       li.dataset.champKey = c.key || c.name;
-
       li.innerHTML = `<img src="${c.icon}" alt="${c.name} icon" class="champ-logo" />`;
-      //   li.addEventListener('click', addToCompFn);
       this.champList.appendChild(li);
       champElements.push(li);
     });
     return champElements;
   }
 
-  openChampGrid() {
+  _bindClonedButton(clonedBtn) {
+    clonedBtn.addEventListener('click', (e) => {
+      const tierList = e.target.closest('.tier-list');
+      document.querySelector('.champions-section').classList.remove('hidden');
+      this._champSlot = tierList;
+    });
+  }
+
+  bindOpenChampGrid() {
+    if (this._openChampGridBound) return;
+
     this.addChampBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
+        const tierList = e.target.closest('.tier-list');
+        if (!this._originalButtons.has(tierList)) {
+          this._originalButtons.set(tierList, btn.cloneNode(true));
+        }
         document.querySelector('.champions-section').classList.remove('hidden');
-        this._champSlot = e.target.closest('.tier-list');
+        this._champSlot = tierList;
       });
     });
-    // this.tierLists.forEach((list) => {
-    //    list.addEventListener('click', (e) => {
-    //     const champEl = e.target.closest('.champ');
-    //     if (!champEl || !list.contains(champEl)) return;
-    //     this._champSlot = e.target.;
-    //   });
-    // });
+
+    this._openChampGridBound = true;
+  }
+
+  openChampGrid() {
+    this.championsGrid.classList.remove('hidden');
   }
 
   closeChampGrid() {
     document.querySelector('.close-btn').addEventListener('click', () => {
       this._champSlot = null;
       this._activeChamp = null;
-
       document.querySelector('.champions-section').classList.add('hidden');
     });
   }
 
   addChamp(champElements, championsData) {
-    let activeEl = null;
     if (champElements && Array.isArray(champElements)) {
       champElements.forEach((el) =>
         el.addEventListener('click', () => {
           const clickedKey = el.dataset.champKey;
 
           // se c'è un altro elemento attivo, lo deseleziono
-          if (activeEl && activeEl !== el) {
-            activeEl.classList.remove('active');
+          if (this._activeEl && this._activeEl !== el) {
+            this._activeEl.classList.remove('active');
           }
 
           // se ho cliccato l'elemento già attivo lo setto off, altrimenti lo setto active
-          if (activeEl === el) {
+          if (this._activeEl === el) {
             el.classList.remove('active');
-            activeEl = null;
+            this._activeEl = null;
             this._activeChamp = null;
           } else {
             el.classList.add('active');
-            activeEl = el;
-            console.log(el);
+            this._activeEl = el;
             this._activeChamp = clickedKey;
           }
         })
       );
     }
+
+    if (this._confirmBound) return;
+    this._confirmBound = true;
+
     document.querySelector('.confirm').addEventListener('click', () => {
       const activeIsDelete =
         this._activeChamp === 'delete' ||
         (this._activeEl && this._activeEl.dataset.champKey === 'delete');
+
       if (activeIsDelete) {
         if (
           this._replaceTarget &&
           this._replaceTarget.parentNode === this._champSlot
         ) {
-          this.removeChampElement(this._replaceTarget);
-          // pulizia stato visivo e variabili
+          const isInCompSection = this._replaceTarget.closest('.team-comps');
+
+          if (isInCompSection) {
+            const originalBtn = this._originalButtons.get(this._champSlot);
+            this.removeChampElement(this._replaceTarget);
+            if (originalBtn) {
+              const wrapper = document.createElement('li');
+              wrapper.classList.add('champ');
+              const clonedBtn = originalBtn.cloneNode(true);
+              wrapper.appendChild(clonedBtn);
+              this._champSlot.insertBefore(wrapper, this._champSlot.firstChild);
+              this._bindClonedButton(clonedBtn);
+              // re-registra il listener sul bottone clonato
+              clonedBtn.addEventListener('click', (e) => {
+                const tierList = e.target.closest('.tier-list');
+                document
+                  .querySelector('.champions-section')
+                  .classList.remove('hidden');
+                this._champSlot = tierList;
+              });
+            }
+          } else {
+            this.removeChampElement(this._replaceTarget);
+          }
+
           if (this._activeEl) this._activeEl.classList.remove('active');
           this._activeEl = null;
           this._activeChamp = null;
           this._replaceTarget = null;
           document.querySelector('.champions-section').classList.add('hidden');
-          return; // non procedere oltre
+          return;
         } else {
           console.warn(
             'Nessun target selezionato per la rimozione o slot non corrispondente.'
@@ -118,7 +158,7 @@ export class TeamView {
 
       if (this._activeChamp && this._champSlot) {
         const champData = championsData.find(
-          (c) => c.name === this._activeChamp
+          (c) => c.key === this._activeChamp || c.name === this._activeChamp
         );
 
         if (!champData) {
@@ -144,9 +184,9 @@ export class TeamView {
           );
         }
 
-        activeEl.classList.remove('active');
+        if (this._activeEl) this._activeEl.classList.remove('active');
+        this._activeEl = null;
         this._activeChamp = null;
-        activeEl = null;
         document.querySelector('.champions-section').classList.add('hidden');
       } else {
         console.warn('Nessun campione o slot selezionato');
@@ -165,7 +205,6 @@ export class TeamView {
         list.addEventListener('click', (e) => {
           const champEl = e.target.closest('.champ');
           if (!champEl || !list.contains(champEl)) return;
-          // salva il slot/lista e l'elemento da sostituire
           this._champSlot = list;
           this._replaceTarget = champEl;
           this.championsGrid.classList.remove('hidden');
@@ -180,7 +219,7 @@ export class TeamView {
 
     champEls.forEach((li) => {
       const champKey = (li.dataset.champKey || '').toLowerCase();
-      if (champKey.indexOf(search) > -1) {
+      if (!search || champKey.indexOf(search) > -1) {
         li.style.display = '';
       } else {
         li.style.display = 'none';
@@ -188,7 +227,6 @@ export class TeamView {
     });
   }
 
-  // ---- REGISTRA LISTENER RICERCA INPUT ---- //
   bindSearchInput() {
     if (!this.searchInp) return;
     this.searchInp.addEventListener('input', (e) => {
