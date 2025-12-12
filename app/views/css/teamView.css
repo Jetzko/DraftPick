@@ -109,7 +109,6 @@ padding-bottom: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 0.8rem;
 }
 
 .champ.delete {
@@ -212,12 +211,12 @@ padding-bottom: 2rem;
 }
 
 .comp-list {
-    margin: 0.8rem;
+    margin: 1.2rem;
 }
 
-.comp {
+.comp, .comp-builder {
     display: grid;
-    grid-template: 1fr 3fr / 1fr 1fr;
+    grid-template: 1fr 5fr / 1fr 1fr;
     border: solid 2px var(--light-grey);
     padding: 0.8rem;
     border-radius: 4px;
@@ -225,6 +224,7 @@ padding-bottom: 2rem;
     justify-items: center;
     align-items: center;
     position: relative;
+    margin-bottom: 2rem;
 }
 
 .comp-btns {
@@ -253,9 +253,13 @@ padding-bottom: 2rem;
     transform: scale(0.9);
 }
 
-.comp-name {
+.comp-name, .comp-name-inp {
     font-size: var(--paragraph);
     grid-column: span 2;
+}
+
+.comp-name-inp {
+    text-align: center;
 }
 
 .front-part, 
@@ -274,18 +278,18 @@ padding-bottom: 2rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-bottom: 1.2rem;
-    justify-content: center;
+   
+    justify-content: start;
 }
 
 .game-plan {
     font-size: var(--paragraph);
+     margin-top: 1.2rem;
 }
 
 .synergies {
     display: grid;
-    grid-template: 1fr 1fr / 1fr 1fr;
-    justify-items: center;
+    gap: 0.4rem;
 }
 
 .statistics {
@@ -305,14 +309,13 @@ padding-bottom: 2rem;
     font-size: var(--paragraph);
 }
 
-.jungle-syn {
+/* .jungle-syn {
     grid-row: span 2;
-}
+} */
 
 .comp-builder.hidden {
-    visibility: hidden;
+    display: none;
 }
-
 /* CHAMPIONS SECTION */
 
 .champions-section {
