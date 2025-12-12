@@ -16,10 +16,43 @@ export class TeamView {
     this._openChampGridBound = false;
     this._editComp = false;
     this._addCompBtn = document.querySelector('.add-comp-btn');
+    this.onCompositionSaved = null;
+    this.onCompositionEdited = null;
+    this.onChampPoolUpdated = null;
 
     this._bindSearchInput();
     this._bindOpenChampGrid();
     this._bindCreateComp();
+  }
+
+  getChampPoolData() {
+    const lanes = document.querySelectorAll('.champ-pool .player');
+
+    const pool = {};
+
+    lanes.forEach((lane) => {
+      const laneName = lane.classList[1]; // top, jungle, mid, bot, support
+      const tierLists = lane.querySelectorAll('.tier-list');
+
+      pool[laneName] = {
+        s: [],
+        a: [],
+        situational: [],
+      };
+
+      tierLists.forEach((list) => {
+        const tier = list.classList.contains('s')
+          ? 's'
+          : list.classList.contains('a')
+          ? 'a'
+          : 'situational';
+
+        const champs = list.querySelectorAll('.champ[data-champ-key]');
+        champs.forEach((c) => pool[laneName][tier].push(c.dataset.champKey));
+      });
+    });
+
+    return pool;
   }
 
   renderChampGrid(champions) {
@@ -162,6 +195,15 @@ export class TeamView {
             this.removeChampElement(this._replaceTarget);
           }
 
+          if (
+            this._replaceTarget &&
+            this._replaceTarget.closest('.champ-pool')
+          ) {
+            if (this.onChampPoolUpdated) {
+              this.onChampPoolUpdated(this.getChampPoolData());
+            }
+          }
+
           if (this._activeEl) this._activeEl.classList.remove('active');
           this._activeEl = null;
           this._activeChamp = null;
@@ -212,6 +254,12 @@ export class TeamView {
               champElement,
               this._champSlot.firstChild
             );
+          }
+        }
+
+        if (this._champSlot.closest('.champ-pool')) {
+          if (this.onChampPoolUpdated) {
+            this.onChampPoolUpdated(this.getChampPoolData());
           }
         }
 
@@ -295,7 +343,6 @@ export class TeamView {
         if (!champLi) return;
         // SALVIAMO IL LI come target dello slot (non l'UL)
         this._champSlot = champLi;
-        console.log('CLICK SU + → slot LI:', this._champSlot);
         this.championsGrid.classList.remove('hidden');
       })
     );
@@ -305,40 +352,61 @@ export class TeamView {
     saveBtn.addEventListener('click', () => this._saveComposition(newComp));
   }
 
-  _saveComposition(compEl) {
-    const nameInp = compEl.querySelector('.comp-name-inp');
-    const compName = nameInp?.value.trim() || 'Unnamed Composition';
+  _extractCompData(li) {
+    // 1) Nome della composition
+    let name = '';
 
-    const champs = [];
-    const champSlots = compEl.querySelectorAll('.champ[data-champ-key]');
+    const inpBuilder = li.querySelector('.comp-name-inp'); // builder
+    const inpEdit = li.querySelector('.comp-name-input'); // edit mode
+    const title = li.querySelector('.comp-name'); // saved comp
 
-    champSlots.forEach((slot) => {
-      const key = slot.dataset.champKey;
-      const img = slot.querySelector('img');
-      const icon = img ? img.src : null;
-
-      champs.push({ key, icon });
-    });
-
-    if (champs.length < 5) {
-      alert('Inserisci tutti e 5 i campioni!');
-      return;
+    if (inpBuilder) {
+      name = inpBuilder.value.trim();
+    } else if (inpEdit) {
+      name = inpEdit.value.trim();
+    } else if (title) {
+      name = title.textContent.trim();
+    } else {
+      console.warn('⚠ Nessun elemento nome trovato nel comp', li);
+      name = 'Unnamed';
     }
 
-    // Creiamo struttura della composition salvata
-    const comp = {
-      name: compName,
-      champions: champs.map((c) => c.key),
-      championsIconMap: champs.reduce((acc, c) => {
-        acc[c.key] = c.icon;
-        return acc;
-      }, {}),
+    // 2) Champions (solo quelli con campione inserito)
+    const champSlots = li.querySelectorAll('.champ[data-champ-key]');
+
+    const champions = Array.from(champSlots).map((slot) => ({
+      champKey: slot.dataset.champKey,
+    }));
+
+    return {
+      name,
+      champions,
     };
+  }
 
-    // Render visivo
-    this._renderSavedComposition(comp);
+  _saveComposition(compEl) {
+    const compData = this._extractCompData(compEl);
 
-    // Rimuovo il builder
+    // Invio al controller (per futuro)
+    // controller.processComposition(compData);
+
+    if (this.onCompositionSaved) {
+      this.onCompositionSaved(compData); // <— passa al controller
+    }
+
+    this._renderSavedComposition({
+      name: compData.name,
+      champions: compData.champions.map((c) => c.champKey),
+      championsIconMap: Object.fromEntries(
+        Array.from(compEl.querySelectorAll('.champ[data-champ-key]')).map(
+          (slot) => [
+            slot.dataset.champKey,
+            slot.querySelector('img')?.src || '',
+          ]
+        )
+      ),
+    });
+
     compEl.remove();
   }
 
@@ -398,8 +466,8 @@ export class TeamView {
                    <strong>Bot-lane Synergy: </strong> A
                   </p>
                   <p class="jungle-syn">
-                   <strong>Gank Potencial:</strong><br>
-                   Top: A <br> Mid: B <br> Bot: S 
+                   
+                   <strong>Gank Top:</strong> A<br><strong>Gank Mid:</strong> B<br><strong>Gank Bot:</strong> S 
                   </p>
                 </div>
               </div>
@@ -483,39 +551,27 @@ export class TeamView {
   }
 
   _saveEdit(li) {
-    // Nome finale
-    const nameInput = li.querySelector('.comp-name-input');
-    const newName = nameInput.value.trim();
+    const compData = this._extractCompData(li);
 
-    li.querySelector('.comp-name').textContent = newName;
+    if (this.onCompositionEdited) {
+      this.onCompositionEdited(compData);
+    }
 
-    // Rimuovi stato editing
-    li.classList.remove('editing');
+    // Qui in futuro:
+    // controller.updateComposition(compData);
 
-    // Ripristina bottoni edit/delete
+    // Ripristino nome
+    li.querySelector('.comp-name').textContent = compData.name;
+
+    // Ripristino bottoni edit/delete
     const btns = li.querySelector('.comp-btns');
     btns.innerHTML = `
-       <button class="comp-btn comp-edit">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                  </svg>
-                </button>
-                <button class="comp-btn comp-delete">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                  </svg>
-                </button>
+    <button class="comp-btn comp-edit">✎</button>
+    <button class="comp-btn comp-delete">🗑</button>
   `;
 
-    // Riattacca eventi
     this._bindCompositionActions(li);
-
-    // Rendi slot non più cliccabili
-    li.querySelectorAll('.editable-slot').forEach((slot) => {
-      slot.classList.remove('editable-slot');
-    });
-
-    console.log('Modifica salvata!');
+    li.classList.remove('editing');
   }
 
   _cancelEdit(li, oldName) {
