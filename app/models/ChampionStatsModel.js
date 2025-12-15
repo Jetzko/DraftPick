@@ -461,7 +461,6 @@ export class ChampionStatsModel {
 
     // const allTags = this.collectAllChampionTags(championsWithRange);
     // console.log(allTags);
-    console.log(championsWithRange);
     return championsWithRange;
   }
 

@@ -55,6 +55,27 @@ export class TeamView {
     return pool;
   }
 
+  renderFlexPicks(flexPicks, champions) {
+    const flexList = document.querySelector('.flex.tier-list');
+    if (!flexList) return;
+
+    flexList.innerHTML = '';
+
+    flexPicks.forEach((champKey) => {
+      const li = document.createElement('li');
+      li.classList.add('champ');
+      li.dataset.champKey = champKey;
+
+      li.innerHTML = `
+      <img src='${champions.find((c) => c.name === champKey).icon}' alt='${
+        champions.find((c) => c.name === champKey).name
+      }' class='champ-logo'>
+    `;
+
+      flexList.appendChild(li);
+    });
+  }
+
   renderChampGrid(champions) {
     const champElements = [];
     const delLi = document.createElement('li');
