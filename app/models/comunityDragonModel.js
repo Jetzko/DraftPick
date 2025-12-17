@@ -85,7 +85,6 @@ export class ComunityDragonModel {
     const data = await resDDragon.json();
 
     const championIDs = Object.values(data.data).map((c) => Number(c.key));
-    console.log('🏷️ Champion IDs:', championIDs);
 
     const details = {};
     const batchSize = 10;

@@ -36,14 +36,13 @@ export class TeamController {
     this.compStats.setChampPool(poolData);
 
     const flexPicks = this.compStats.getFlexPicks(poolData);
-    console.log(flexPicks);
     this.teamView.renderFlexPicks(flexPicks, this.champions);
   }
 
   handleCompositionSave(compData) {
-    this.compositions = compData;
+    const rankedComp = this.compStats.calcRankComp(this.champions, compData);
 
-    this.compStats.addComposition(this.compositions);
+    this.compStats.addOrUpdateComposition(rankedComp);
 
     // console.log('📥 Composition salvata nella View:', compData);
     // 👉 Qui chiami il tuo model
@@ -56,7 +55,7 @@ export class TeamController {
   handleCompositionEdit(compData) {
     this.compositions = compData;
 
-    this.compStats.addComposition(this.compositions);
+    this.compStats.addOrUpdateComposition(this.compositions);
     // console.log('✏️ Composition modificata:', compData);
     // const analyzed = this.compStats.generateTeamStats(compData);
     // console.log('📊 Risultato aggiornato dal model:', analyzed);

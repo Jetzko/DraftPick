@@ -20,8 +20,8 @@ export class ChampionStatsModel {
 
     // this.spellTags = ['<physicalDamage>', '<magicDamage>','<trueDamage>', '<speed>', '<healing>', '<shield>', '<status>'];
     this.classes = {
-      assassin: {
-        slayer: [],
+      slayer: {
+        assassin: [],
         skirmisher: [],
       },
       fighter: {
@@ -47,7 +47,7 @@ export class ChampionStatsModel {
         warden: [],
       },
     };
-    this.mSlayers = [
+    this.mAssassins = [
       'Akali',
       'Akshan',
       'Diana',
@@ -288,7 +288,7 @@ export class ChampionStatsModel {
 
     this.subclassMap = {
       // ASSASSIN
-      slayer: this.mSlayers,
+      assassin: this.mAssassins,
       skirmisher: this.mSkirmishers,
 
       // FIGHTER
@@ -456,6 +456,8 @@ export class ChampionStatsModel {
           ...champ.playstyleInfo,
           range: range,
         },
+        classes: [],
+        roles: [],
       };
     }
 
@@ -482,25 +484,29 @@ export class ChampionStatsModel {
   // }
 
   assignSubclasses() {
-    for (const champName in this.newChampionsData) {
-      const champ = this.newChampionsData[champName];
+    for (const champKey in this.newChampionsData) {
+      const champ = this.newChampionsData[champKey];
 
-      // Cerca in quale sottoclasse compare il nome del campione
       for (const subclass in this.subclassMap) {
         const list = this.subclassMap[subclass];
 
-        if (list.includes(champName)) {
-          // Trova la CLASSE che contiene la sottoclasse
-          for (const mainClass in this.classes) {
-            if (this.classes[mainClass].hasOwnProperty(subclass)) {
-              this.classes[mainClass][subclass].push(champ);
+        if (list.includes(champKey)) {
+          champ.classes.push(subclass);
+
+          // trova il ruolo che contiene questa classe
+          for (const role in this.classes) {
+            if (this.classes[role][subclass]) {
+              champ.roles.push(role);
             }
           }
         }
       }
-    }
-    console.log(this.classes);
 
-    return this.classes;
+      // rimuove eventuali duplicati
+      champ.roles = [...new Set(champ.roles)];
+      champ.classes = [...new Set(champ.classes)];
+    }
+
+    return this.newChampionsData;
   }
 }
