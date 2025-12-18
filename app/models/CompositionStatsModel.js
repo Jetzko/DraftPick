@@ -1,5 +1,3 @@
-import { TeamController } from '../controllers/TeamController.js';
-
 export class CompositionStatsModel {
   constructor() {
     // this.teamController = new TeamController();
@@ -103,6 +101,39 @@ export class CompositionStatsModel {
 
     //Calcolo Gank potencial
 
+    const getChampByRole = (role) => {
+      const entry = compData.champions.find((c) => c.role === role);
+      if (!entry) return null;
+
+      return champData.find((c) => c.name === entry.champKey);
+    };
+
+    const evaluateGank = (jungler, laner) => {
+      if (!jungler || !laner) return 'C';
+
+      const jPS = jungler.playstyleInfo;
+      const lPS = laner.playstyleInfo;
+
+      if (!jPS || !lPS) return 'C';
+
+      const totalDamage = (jPS.damage ?? 1) + (lPS.damage ?? 1);
+
+      const totalCC = (jPS.crowdControl ?? 1) + (lPS.crowdControl ?? 1);
+
+      if (totalDamage >= 5 && totalCC >= 5) return 'S';
+      if (totalDamage >= 4 && totalCC >= 4) return 'A';
+      if (totalDamage >= 3 && totalCC >= 3) return 'B';
+
+      return 'C';
+    };
+
+    const jungler = getChampByRole('Jungle');
+    const top = getChampByRole('Top-Lane');
+    const mid = getChampByRole('Mid-Lane');
+
+    compRanks.gank.top = evaluateGank(jungler, top);
+    compRanks.gank.mid = evaluateGank(jungler, mid);
+
     //Calcolo Sinergie campioni/composizione
 
     // 3️⃣ ritorna struttura completa (per futuri step)
@@ -112,9 +143,8 @@ export class CompositionStatsModel {
       compRanks,
     };
     console.log(compData);
-    return {
-      compData,
-    };
+
+    return compData;
   }
 
   _normalizeStat(value, min = 5, max = 15) {

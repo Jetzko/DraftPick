@@ -103,6 +103,8 @@ padding-bottom: 2rem;
 .player .champ,
 .comp .champ {
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .champ {  
@@ -281,6 +283,15 @@ padding-bottom: 2rem;
     flex-wrap: wrap;
    
     justify-content: start;
+}
+
+.comp-champs .champ {
+    display: flex;
+    flex-direction: column;
+}
+
+.champ .role {
+    font-size: var(--span);
 }
 
 .game-plan {

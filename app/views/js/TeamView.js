@@ -256,7 +256,7 @@ export class TeamView {
         ) {
           // settiamo dataset e innerHTML del LI esistente (manteniamo la struttura di <li>)
           this._champSlot.dataset.champKey = this._activeChamp;
-          this._champSlot.innerHTML = `<img src="${champData.icon}" alt="${champData.name} icon" class="champ-logo" />`;
+          this._champSlot.innerHTML = `<span class="role">${this._champSlot.classList[1]}</span><img src="${champData.icon}" alt="${champData.name} icon" class="champ-logo" />`;
         } else {
           // comportamento legacy: inseriamo un nuovo elemento all'interno della lista target
           const champElement = document.createElement('li');
@@ -395,9 +395,14 @@ export class TeamView {
     // 2) Champions (solo quelli con campione inserito)
     const champSlots = li.querySelectorAll('.champ[data-champ-key]');
 
-    const champions = Array.from(champSlots).map((slot) => ({
-      champKey: slot.dataset.champKey,
-    }));
+    const champions = Array.from(champSlots).map((slot) => {
+      const roleClass = [...slot.classList].find((c) => c !== 'champ');
+
+      return {
+        champKey: slot.dataset.champKey,
+        role: roleClass ?? null,
+      };
+    });
 
     return {
       id: li.dataset.compId ?? null,
@@ -414,9 +419,6 @@ export class TeamView {
       id: compData.id ?? crypto.randomUUID(),
     };
 
-    // Invio al controller (per futuro)
-    // controller.processComposition(compData);
-
     if (this.onCompositionSaved) {
       this.onCompositionSaved(compData); // <— passa al controller
     }
@@ -424,7 +426,10 @@ export class TeamView {
     this._renderSavedComposition({
       id: compData.id,
       name: compData.name,
-      champions: compData.champions.map((c) => c.champKey),
+      champions: compData.champions.map((c) => ({
+        champKey: c.champKey,
+        role: c.role,
+      })),
       championsIconMap: Object.fromEntries(
         Array.from(compEl.querySelectorAll('.champ[data-champ-key]')).map(
           (slot) => [
@@ -462,14 +467,16 @@ export class TeamView {
                </div>
               <div class="front-part">
               <ul class="tier-list">
-               ${comp.champions
-                 .map(
-                   (key) => `
-          <li class="champ" data-champ-key="${key}">
-            <img src="${comp.championsIconMap[key]}" class="champ-logo">
-          </li>`
-                 )
-                 .join('')}
+              ${comp.champions
+                .map(
+                  ({ champKey, role }) => `
+                    <li class="champ ${role}" data-champ-key="${champKey}">
+                      <span class="role">${role}</span>
+                      <img src="${comp.championsIconMap[champKey]}" class="champ-logo">
+                    </li>
+                  `
+                )
+                .join('')}
               </ul>
               <p class="game-plan">
                 <strong>CHARGE COMPOSITION</strong> <br>
