@@ -230,6 +230,12 @@ padding-bottom: 2rem;
     margin-bottom: 2rem;
 }
 
+.comp-builder.active-builder {
+    display: grid;
+    grid-template: 1fr 5fr 1fr/ 1fr;
+    row-gap: 1.2rem;
+}
+
 .comp-btns {
     position: absolute;
     top: 0;
@@ -244,6 +250,27 @@ padding-bottom: 2rem;
     border: transparent;
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
+}
+
+.save-btn {
+    background-color: var(--gold);
+}
+
+.select-comp {
+    grid-row: 3/4;
+
+}
+
+.select-label {
+    font-size: var(--paragraph);
+    margin-right: 0.4rem;
+}
+
+.comp-type-select {
+    font-size: var(--paragraph);
+    background-color: var(--white);
+    color: var(--black);
+    border-radius: 2px;
 }
 
 .comp-icon {

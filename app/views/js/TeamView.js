@@ -341,6 +341,24 @@ export class TeamView {
     });
   }
 
+  _bindReplaceOnChampClick(container) {
+    container.addEventListener('click', (e) => {
+      const champLi = e.target.closest('.champ');
+
+      if (!champLi) return;
+
+      // evita click sul +
+      if (e.target.closest('.add-champ-btn')) return;
+
+      // deve avere un campione assegnato
+      if (!champLi.dataset.champKey) return;
+
+      this._champSlot = champLi;
+      this._replaceTarget = champLi;
+      this.championsGrid.classList.remove('hidden');
+    });
+  }
+
   _createNewComp() {
     // template della comp-builder nella pagina
     const template = document.querySelector('.comp-builder.hidden');
@@ -351,7 +369,30 @@ export class TeamView {
     newComp.classList.remove('hidden');
     newComp.classList.add('active-builder');
 
+    const deleteBtn = newComp.querySelector('.comp-delete');
+
+    if (deleteBtn) {
+      deleteBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // reset stato interno
+        this._champSlot = null;
+        this._replaceTarget = null;
+
+        // chiudi il builder senza salvare
+        newComp.remove();
+      });
+    }
+
     // Inserisco il builder nella lista composizioni
+
+    const gamePlan = newComp.querySelector('.game-plan');
+    const details = newComp.querySelector('.details');
+
+    if (gamePlan) gamePlan.style.display = 'none';
+    if (details) details.style.display = 'none';
+
     const compList = document.querySelector('.comps');
     compList.insertBefore(newComp, compList.firstChild);
 
@@ -368,17 +409,18 @@ export class TeamView {
       })
     );
 
+    this._bindReplaceOnChampClick(newComp);
+
     // Binding del tasto SAVE della nuova comp
     const saveBtn = newComp.querySelector('.save-btn');
     saveBtn.addEventListener('click', () => this._saveComposition(newComp));
   }
 
   _extractCompData(li) {
-    // 1) Nome della composition
+    // Nome
     let name = '';
-
     const inpBuilder = li.querySelector('.comp-name-inp'); // builder
-    const inpEdit = li.querySelector('.comp-name-input'); // edit mode
+    const inpEdit = li.querySelector('.comp-name-input'); // edit
     const title = li.querySelector('.comp-name'); // saved comp
 
     if (inpBuilder) {
@@ -388,39 +430,80 @@ export class TeamView {
     } else if (title) {
       name = title.textContent.trim();
     } else {
-      console.warn('⚠ Nessun elemento nome trovato nel comp', li);
       name = 'Unnamed';
     }
 
-    // 2) Champions (solo quelli con campione inserito)
+    // Champions
     const champSlots = li.querySelectorAll('.champ[data-champ-key]');
-
     const champions = Array.from(champSlots).map((slot) => {
       const roleClass = [...slot.classList].find((c) => c !== 'champ');
-
-      return {
-        champKey: slot.dataset.champKey,
-        role: roleClass ?? null,
-      };
+      return { champKey: slot.dataset.champKey, lane: roleClass ?? null };
     });
+
+    // Tipo composizione
+    const typeSelect = li.querySelector(
+      '.comp-type-select, .comp-type-select-edit'
+    );
+
+    let type = 'charge'; // default
+    if (typeSelect) type = typeSelect.value;
+    else {
+      const gpStrong = li.querySelector('.game-plan strong');
+      if (gpStrong) type = gpStrong.textContent.split(' ')[0].toLowerCase();
+    }
 
     return {
       id: li.dataset.compId ?? null,
       name,
       champions,
+      type,
     };
   }
 
   _saveComposition(compEl) {
+    const REQUIRED_ROLES = [
+      'Top-Lane',
+      'Jungle',
+      'Mid-Lane',
+      'Bot-Lane',
+      'Support',
+    ];
+
     let compData = this._extractCompData(compEl);
 
+    // 🔴 VALIDAZIONE NOME COMPOSIZIONE
+    if (!compData.name) {
+      alert('Please digit a team composition name');
+      return;
+    }
+
+    // 🔴 VALIDAZIONE TIPO COMPOSIZIONE
+    if (!compData.type) {
+      alert('Please select a team composition type');
+      return;
+    }
+
+    // 🔴 VALIDAZIONE RUOLI
+    const selectedRoles = compData.champions.map((c) => c.lane).filter(Boolean);
+
+    const missingRoles = REQUIRED_ROLES.filter(
+      (role) => !selectedRoles.includes(role)
+    );
+
+    if (missingRoles.length > 0) {
+      alert(`Missing champions for: ${missingRoles.join(', ')}`);
+      return;
+    }
+
+    // 🔵 OK → assegna ID
     compData = {
       ...compData,
       id: compData.id ?? crypto.randomUUID(),
     };
 
+    // 🔵 SALVA
     if (this.onCompositionSaved) {
-      this.onCompositionSaved(compData); // <— passa al controller
+      this.onCompositionSaved(compData);
     }
 
     this._renderSavedComposition({
@@ -428,7 +511,7 @@ export class TeamView {
       name: compData.name,
       champions: compData.champions.map((c) => ({
         champKey: c.champKey,
-        role: c.role,
+        role: c.lane,
       })),
       championsIconMap: Object.fromEntries(
         Array.from(compEl.querySelectorAll('.champ[data-champ-key]')).map(
@@ -438,6 +521,7 @@ export class TeamView {
           ]
         )
       ),
+      type: compData.type, // <— aggiunto
     });
 
     compEl.remove();
@@ -445,6 +529,7 @@ export class TeamView {
 
   _renderSavedComposition(comp) {
     const compList = document.querySelector('.comps');
+    const type = (comp.type || 'charge').toUpperCase();
 
     const li = document.createElement('li');
     li.classList.add('comp');
@@ -479,7 +564,7 @@ export class TeamView {
                 .join('')}
               </ul>
               <p class="game-plan">
-                <strong>CHARGE COMPOSITION</strong> <br>
+                <strong>${comp.type.toUpperCase()} COMPOSITION</strong> <br>
                <strong>Identity:</strong> Teamfight oriented <br>
                <strong>Game Plan:</strong> Scale early game, teamfight at objectives as 5 <br>
                 <strong>Win Conditions:</strong> Team fighting with ultimates, wombo combo 
@@ -538,50 +623,53 @@ export class TeamView {
   }
 
   _enterEditMode(li) {
-    // ====== 1. BLOCCA se già in edit ======
     if (li.classList.contains('editing')) return;
     li.classList.add('editing');
 
-    // ====== 2. TRASFORMA IL TITOLO IN INPUT ======
+    // ====== 1. TRASFORMA IL TITOLO IN INPUT ======
     const nameEl = li.querySelector('.comp-name');
     const oldName = nameEl.textContent.trim();
+    nameEl.innerHTML = `<input type="text" class="comp-name-input" value="${oldName}">`;
 
-    nameEl.innerHTML = `
-    <input type="text" class="comp-name-input" value="${oldName}">
+    // ====== 2. TRASFORMARE IL TIPO DI COMPOSIZIONE in select ======
+    const gamePlanEl = li.querySelector('.game-plan strong');
+    const oldType = gamePlanEl.textContent
+      .replace(' COMPOSITION', '')
+      .toLowerCase();
+
+    const selectHtml = `
+    <select class="comp-type-select-edit">
+      <option value="charge" ${
+        oldType === 'charge' ? 'selected' : ''
+      }>Charge</option>
+      <option value="catch" ${
+        oldType === 'catch' ? 'selected' : ''
+      }>Catch</option>
+      <option value="protect" ${
+        oldType === 'protect' ? 'selected' : ''
+      }>Protect</option>
+      <option value="siege" ${
+        oldType === 'siege' ? 'selected' : ''
+      }>Siege</option>
+      <option value="split" ${
+        oldType === 'split' ? 'selected' : ''
+      }>Split</option>
+    </select>
   `;
 
-    // ====== 3. AGGIUNGI BOTTONI SAVE / CANCEL ======
+    gamePlanEl.outerHTML = selectHtml;
+
+    // ====== 3. Altri binding (champ slots, bottoni save/cancel) ======
     const btns = li.querySelector('.comp-btns');
-
     btns.innerHTML = `
-      <button class="comp-btn save-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
-                   <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12" />
-                </svg>
-                </button>
-                <button class="comp-btn comp-delete">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                  </svg>
-                </button>
+    <button class="comp-btn save-btn">…</button>
+    <button class="comp-btn comp-delete">…</button>
   `;
 
-    // ====== 4. RENDI MODIFICABILI GLI SLOT CAMPIONI ======
-    const champSlots = li.querySelectorAll('.champ');
-
-    champSlots.forEach((slot) => {
-      slot.classList.add('editable-slot');
-      slot.addEventListener('click', () => {
-        this._champSlot = slot; // ← come nel builder
-        this.championsGrid.classList.remove('hidden');
-      });
-    });
-
-    // ====== 5. AGGANCIA EVENTI SAVE/CANCEL ======
+    // Binding dei save/cancel
     btns
       .querySelector('.save-btn')
       .addEventListener('click', () => this._saveEdit(li));
-
     btns
       .querySelector('.comp-delete')
       .addEventListener('click', () => this._cancelEdit(li, oldName));
@@ -590,30 +678,24 @@ export class TeamView {
   _saveEdit(li) {
     const compData = this._extractCompData(li);
 
-    if (!compData.id) {
-      console.error('❌ Edit senza ID, impossibile aggiornare');
-      return;
-    }
+    // Aggiorniamo il game-plan
+    const gamePlanEl = li.querySelector('.game-plan');
+    const type = compData.type.toUpperCase();
+    gamePlanEl.innerHTML = `
+    <strong>${type} COMPOSITION</strong> <br>
+    <strong>Identity:</strong> Teamfight oriented <br>
+    <strong>Game Plan:</strong> Scale early game, teamfight at objectives as 5 <br>
+    <strong>Win Conditions:</strong> Team fighting with ultimates, wombo combo
+  `;
 
-    if (this.onCompositionEdited) {
-      this.onCompositionEdited(compData);
-    }
+    // Ripristino nome e bottoni
+    const nameEl = li.querySelector('.comp-name');
+    nameEl.textContent = compData.name;
 
-    // Qui in futuro:
-    // controller.updateComposition(compData);
-
-    // Ripristino nome
-    li.querySelector('.comp-name').textContent = compData.name;
-
-    // Ripristino bottoni edit/delete
     const btns = li.querySelector('.comp-btns');
     btns.innerHTML = `
-    <button class="comp-btn comp-edit"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                  </svg></button>
-    <button class="comp-btn comp-delete"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                  </svg></button>
+    <button class="comp-btn comp-edit">…</button>
+    <button class="comp-btn comp-delete">…</button>
   `;
 
     this._bindCompositionActions(li);
