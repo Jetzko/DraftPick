@@ -233,6 +233,14 @@ BUL    BOTH(S)    SUSTAIN(D)     SOFT(C)    REPOSITION(B)   OFFENSIVE(C)    BOTH
 SCO    DPS(S)     SUSTAIN(D)     BOTH(B)    REPOSITION(C)     BOTH(B)       BOTH(A)
 HYP    DPS(S)     SUSTAIN(D)     BOTH(C)    REPOSITION(C)   OFFENSIVE(C)   ATTACKS(S)
 
+
+- Sinergia BotLane
+
+         Warden    Vanguard    Catcher    Enchanter    Mages    
+Hyper      S          B          A            S          B                       
+Bully      B          A          S            B          S      
+Scout      A          A          A            B          S
+
 - Matchup Lane
 - Item Spikes
 - Win Rates

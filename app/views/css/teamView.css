@@ -160,7 +160,7 @@ padding-bottom: 2rem;
 
 .strategies .content {
     display: grid;
-    grid-template: 1fr 1fr / 1fr 1fr;
+    grid-template-columns: 1fr  1fr;
     padding-top: 2rem;
     padding-bottom: 2rem;
     gap: 2rem;

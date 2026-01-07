@@ -40,25 +40,50 @@ export class TeamController {
   }
 
   handleCompositionSave(compData) {
-    const rankedComp = this.compStats.calcRankComp(this.champions, compData);
+    // arricchisci i champion con i dati completi
+    const enrichedComp = this.compStats.enrichCompositionChampions(compData);
 
-    this.compStats.addOrUpdateComposition(rankedComp);
+    // rank (su comp arricchita)
+    const rankedComp = this.compStats.calcRankComp(
+      this.champions,
+      enrichedComp
+    );
 
-    // console.log('📥 Composition salvata nella View:', compData);
-    // 👉 Qui chiami il tuo model
-    // const analyzed = this.compStats.generateTeamStats(compData);
-    // console.log('📊 Risultato del model:', analyzed);
-    // 👉 Quando avrai output, potrai riaggiornare la view se serve
-    // this.teamView.renderAnalysis(analyzed);
+    const compType = rankedComp.type;
+
+    const rankedWithSynergy = this.compStats.evaluateChampSynergy(
+      rankedComp,
+      compType
+    );
+
+    console.log('champData:' + enrichedComp);
+
+    this.compStats.addOrUpdateComposition(rankedWithSynergy);
+    console.log(rankedWithSynergy);
+
+    this.teamView.renderSavedComposition(rankedWithSynergy);
   }
-
   handleCompositionEdit(compData) {
-    this.compositions = compData;
+    // 1) arricchisci con dati champ
+    const enrichedComp = this.compStats.enrichCompositionChampions(compData);
 
-    this.compStats.addOrUpdateComposition(this.compositions);
-    // console.log('✏️ Composition modificata:', compData);
-    // const analyzed = this.compStats.generateTeamStats(compData);
-    // console.log('📊 Risultato aggiornato dal model:', analyzed);
+    // 2) ricalcola ranks
+    const rankedComp = this.compStats.calcRankComp(
+      this.champions,
+      enrichedComp
+    );
+
+    // 3) ricalcola synergy
+    const rankedWithSynergy = this.compStats.evaluateChampSynergy(
+      rankedComp,
+      rankedComp.type
+    );
+
+    // 4) salva/update nel model
+    this.compStats.addOrUpdateComposition(rankedWithSynergy);
+
+    // 5) aggiorna UI della comp esistente
+    this.teamView.updateSavedComposition(rankedWithSynergy);
   }
 
   async initAsync() {
@@ -67,13 +92,13 @@ export class TeamController {
       this.championsData = await this.champStats.init();
 
       if (this.championsData) {
-        this.compStats.getChampionsData(this.championsData);
         // converti l'oggetto in array
         this.champions = Object.values(this.championsData);
         console.log(
           '🗣️ TeamController: questi sono i dati dei campioni',
           this.champions
         );
+        this.compStats.getChampionsData(this.champions);
         this.update();
         console.log('✅ TeamController: dati caricati e view aggiornata');
       } else {
@@ -92,7 +117,6 @@ export class TeamController {
     // this.teamView.addChamp();
     const champElments = this.teamView.renderChampGrid(this.champions);
     // this.champGrid.querySelectorAll('.champ');
-    this.teamView.openChampGrid();
     this.teamView.closeChampGrid();
     this.teamView.addChamp(champElments, this.champions);
     this.teamView.replaceChampion();

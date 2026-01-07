@@ -248,6 +248,7 @@ export class ChampionStatsModel {
 
     this.mHypers = [
       'Aphelios',
+      'Azir',
       'Jinx',
       'Kayle',
       'KogMaw',

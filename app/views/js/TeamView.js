@@ -20,9 +20,59 @@ export class TeamView {
     this.onCompositionEdited = null;
     this.onChampPoolUpdated = null;
 
+    this.championsGrid?.classList.add('hidden');
+
     this._bindSearchInput();
     this._bindOpenChampGrid();
     this._bindCreateComp();
+
+    this._team_comp_info = {
+      SPLIT: {
+        keyAttributes: 'Strong duelist, strong wave clear, disengage',
+        identity: 'Lanes oriented',
+        gamePlan:
+          'Funnel resorces to split carry, take early advantages, stall team fights to let splitter to push',
+        winConditions: 'Split enemies apart',
+        pros: 'Massive pressure in multiple lanes',
+        cons: 'High risk, high macro knowledge required',
+      },
+      PROTECT: {
+        keyAttributes: 'Hyper scaling threat, disengage, utility',
+        identity: 'Teamfight oriented',
+        gamePlan:
+          'Scale to late game, do not over aggro, force team fights at objectives when carry is on spike',
+        winConditions: '5v5 team fights, keep carry alive',
+        pros: 'Very safe and tilting, strong against popular comps',
+        cons: 'Must stay grouped as 5, extremely carry dependent',
+      },
+      CHARGE: {
+        keyAttributes:
+          'At least 1 hard engager, hard cc, massive AOE damage and/or high dps',
+        identity: 'Teamfight oriented',
+        gamePlan: 'Scale early game, teamfight at objectives as 5',
+        winConditions: 'Team fighting with ultimates, wombo combo',
+        pros: 'Easy to execute',
+        cons: 'Ultimate dependent',
+      },
+      SIEGE: {
+        keyAttributes: 'Long range, tower damage, disengage',
+        identity: 'Objectives oriented',
+        gamePlan:
+          'Get advantage early game, poke enemies at objectives to make them retire',
+        winConditions: 'Grind out opponents, objectives oriented',
+        pros: 'Great objective control',
+        cons: 'Required extreme patience and coordination',
+      },
+      CATCH: {
+        keyAttributes: 'Burst damage, single target hard cc, mobility',
+        identity: 'Skirmish and Kills oriented',
+        gamePlan:
+          'Get advantage early game, set vision around objectives to ambush, get enemies out of position',
+        winConditions: 'Unfair Fights 5v4, vision denial',
+        pros: 'Punishes mistakes/greed',
+        cons: 'Weaker 5v5 fighting',
+      },
+    };
   }
 
   getChampPoolData() {
@@ -342,9 +392,12 @@ export class TeamView {
   }
 
   _bindReplaceOnChampClick(container) {
+    // evita bind multipli sullo stesso container
+    if (container?.dataset?.replaceBound === '1') return;
+    if (container?.dataset) container.dataset.replaceBound = '1';
+
     container.addEventListener('click', (e) => {
       const champLi = e.target.closest('.champ');
-
       if (!champLi) return;
 
       // evita click sul +
@@ -352,6 +405,14 @@ export class TeamView {
 
       // deve avere un campione assegnato
       if (!champLi.dataset.champKey) return;
+
+      const inBuilder = !!e.target.closest('.comp-builder');
+      const savedCompEl = e.target.closest('.comp');
+      const inSavedCompEdit =
+        !!savedCompEl && savedCompEl.classList.contains('editing');
+
+      // ✅ abilita replace: builder sempre, saved comp solo se editing
+      if (!inBuilder && !inSavedCompEdit) return;
 
       this._champSlot = champLi;
       this._replaceTarget = champLi;
@@ -504,99 +565,98 @@ export class TeamView {
     // 🔵 SALVA
     if (this.onCompositionSaved) {
       this.onCompositionSaved(compData);
+      console.log(compData);
     }
-
-    this._renderSavedComposition({
-      id: compData.id,
-      name: compData.name,
-      champions: compData.champions.map((c) => ({
-        champKey: c.champKey,
-        role: c.lane,
-      })),
-      championsIconMap: Object.fromEntries(
-        Array.from(compEl.querySelectorAll('.champ[data-champ-key]')).map(
-          (slot) => [
-            slot.dataset.champKey,
-            slot.querySelector('img')?.src || '',
-          ]
-        )
-      ),
-      type: compData.type, // <— aggiunto
-    });
 
     compEl.remove();
   }
 
-  _renderSavedComposition(comp) {
+  renderSavedComposition(compData) {
     const compList = document.querySelector('.comps');
-    const type = (comp.type || 'charge').toUpperCase();
 
     const li = document.createElement('li');
     li.classList.add('comp');
+    li.dataset.compId = compData.id;
 
-    li.dataset.compId = comp.id;
+    const typeKey = String(compData.type || '').toUpperCase();
+    const info = this._team_comp_info[typeKey] || {};
+    const keyAttributes = info.keyAttributes ?? '-';
+    const identity = info.identity ?? '-';
+    const gamePlan = info.gamePlan ?? '-';
+    const winConditions = info.winConditions ?? '-';
+    const pros = info.pros ?? '-';
+    const cons = info.cons ?? '-';
 
     li.innerHTML = `
-    <h4 class="comp-name">${comp.name}</h4>
-               <div class="comp-btns">
-                <button class="comp-btn comp-edit">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                  </svg>
-                </button>
-                <button class="comp-btn comp-delete">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                  </svg>
-                </button>
-               </div>
-              <div class="front-part">
-              <ul class="tier-list">
-              ${comp.champions
-                .map(
-                  ({ champKey, role }) => `
-                    <li class="champ ${role}" data-champ-key="${champKey}">
-                      <span class="role">${role}</span>
-                      <img src="${comp.championsIconMap[champKey]}" class="champ-logo">
-                    </li>
-                  `
-                )
-                .join('')}
-              </ul>
-              <p class="game-plan">
-                <strong>${comp.type.toUpperCase()} COMPOSITION</strong> <br>
-               <strong>Identity:</strong> Teamfight oriented <br>
-               <strong>Game Plan:</strong> Scale early game, teamfight at objectives as 5 <br>
-                <strong>Win Conditions:</strong> Team fighting with ultimates, wombo combo 
-              </p>
-              </div>
-              <div class="details">
-                <ul class="statistics">
-                    <li class="stat">Damage: 10</li>
-                    <li class="stat">Range:  10</li>
-                    <li class="stat">Mobility:  10</li>
-                    <li class="stat">Durability:  10</li>
-                    <li class="stat">Utility:  10</li>
-                    <li class="stat">Controls:  10</li>
-                  </ul>
-                
-                <div class="synergies">
-                 <p class="champ-comp-syn">
-                 <strong>Classes Synergy:</strong> A
-                 </p>
-                 <p class="bot-syn">
-                   <strong>Bot-lane Synergy: </strong> A
-                  </p>
-                  <p class="jungle-syn">
-                   
-                   <strong>Gank Top:</strong> A<br><strong>Gank Mid:</strong> B<br><strong>Gank Bot:</strong> S 
-                  </p>
-                </div>
-              </div>
-  `;
+    <h4 class="comp-name">${compData.name}</h4>
+    <div class="comp-btns">
+      <button class="comp-btn comp-edit">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+        </svg>
+      </button>
+      <button class="comp-btn comp-delete">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+        </svg>
+      </button>
+    </div>
+    <div class="front-part">
+      <ul class="tier-list">
+         ${compData.champions
+           .map(({ champKey, lane }) => {
+             const role = lane || '';
+             const champData = compData.champions.find(
+               (c) => c.key === champKey || c.name === champKey
+             );
+             const icon = champData?.icon || '';
+             return `
+                <li class="champ ${role}" data-champ-key="${champKey}">
+                  <span class="role">${role}</span>
+                  <img src="${icon}" class="champ-logo">
+                </li>
+              `;
+           })
+           .join('')}
+      </ul>
+      <p class="game-plan">
+        <strong>${typeKey} COMPOSITION</strong> <br>
+        <strong>Key Attributes:</strong> ${keyAttributes} <br>
+        <strong>Identity:</strong> ${identity} <br>
+        <strong>Game Plan:</strong> ${gamePlan} <br>
+        <strong>Win Conditions:</strong> ${winConditions} <br>
+        <strong>Pros:</strong> ${pros} <br>
+        <strong>Cons:</strong> ${cons} <br>
+      </p>
+    </div>
+    <div class="details">
+      <ul class="statistics">
+        <li class="stat">Damage: ${compData.compRanks.stats.damage}</li>
+        <li class="stat">Range: ${compData.compRanks.stats.range}</li>
+        <li class="stat">Mobility: ${compData.compRanks.stats.mobility}</li>
+        <li class="stat">Durability: ${compData.compRanks.stats.durability}</li>
+        <li class="stat">Utility: ${compData.compRanks.stats.utility}</li>
+        <li class="stat">Controls: ${compData.compRanks.stats.controls}</li>
+      </ul>
+      <div class="synergies">
+        <p class="champ-comp-syn"><strong>Class-Comp Synergy:</strong> ${
+          compData.synergies?.team_comp ?? '-'
+        }</p>
+        <p class="bot-syn"><strong>Bot-lane Synergy: </strong> ${
+          compData.synergies?.bot_lane ?? '-'
+        }</p>
+        <p class="jungle-syn"><strong>Gank Top:</strong> ${
+          compData.compRanks.gank.top
+        }<br><strong>Gank Mid:</strong> ${
+      compData.compRanks.gank.mid
+    }<br><strong>Gank Bot:</strong> ${compData.compRanks.gank.bot}</p>
+      </div>
+    </div>
+    `;
 
     compList.insertBefore(li, compList.firstChild);
     this._bindCompositionActions(li);
+    this._bindReplaceOnChampClick(li);
   }
 
   _bindCompositionActions(li) {
@@ -662,8 +722,12 @@ export class TeamView {
     // ====== 3. Altri binding (champ slots, bottoni save/cancel) ======
     const btns = li.querySelector('.comp-btns');
     btns.innerHTML = `
-    <button class="comp-btn save-btn">…</button>
-    <button class="comp-btn comp-delete">…</button>
+    <button class="comp-btn save-btn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
+                   <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12" />
+                </svg></button>
+    <button class="comp-btn comp-delete"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                  </svg></button>
   `;
 
     // Binding dei save/cancel
@@ -678,28 +742,74 @@ export class TeamView {
   _saveEdit(li) {
     const compData = this._extractCompData(li);
 
-    // Aggiorniamo il game-plan
-    const gamePlanEl = li.querySelector('.game-plan');
-    const type = compData.type.toUpperCase();
-    gamePlanEl.innerHTML = `
-    <strong>${type} COMPOSITION</strong> <br>
-    <strong>Identity:</strong> Teamfight oriented <br>
-    <strong>Game Plan:</strong> Scale early game, teamfight at objectives as 5 <br>
-    <strong>Win Conditions:</strong> Team fighting with ultimates, wombo combo
-  `;
+    if (this.onCompositionEdited) {
+      this.onCompositionEdited(compData);
+    }
 
-    // Ripristino nome e bottoni
+    // UI: ripristino nome e bottoni (il resto lo aggiorna updateSavedComposition)
     const nameEl = li.querySelector('.comp-name');
     nameEl.textContent = compData.name;
 
     const btns = li.querySelector('.comp-btns');
     btns.innerHTML = `
-    <button class="comp-btn comp-edit">…</button>
-    <button class="comp-btn comp-delete">…</button>
-  `;
+      <button class="comp-btn comp-edit"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+      </svg></button>
+      <button class="comp-btn comp-delete"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comp-icon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+      </svg></button>
+    `;
 
     this._bindCompositionActions(li);
     li.classList.remove('editing');
+  }
+
+  updateSavedComposition(compData) {
+    const li = document.querySelector(`.comp[data-comp-id="${compData.id}"]`);
+    if (!li) return;
+
+    const typeKey = String(compData.type || '').toUpperCase();
+    const info = this._team_comp_info[typeKey] || {};
+
+    const gamePlanEl = li.querySelector('.game-plan');
+    if (gamePlanEl) {
+      gamePlanEl.innerHTML = `
+        <strong>${typeKey} COMPOSITION</strong> <br>
+        <strong>Key Attributes:</strong> ${info.keyAttributes ?? '-'} <br>
+        <strong>Identity:</strong> ${info.identity ?? '-'} <br>
+        <strong>Game Plan:</strong> ${info.gamePlan ?? '-'} <br>
+        <strong>Win Conditions:</strong> ${info.winConditions ?? '-'} <br>
+        <strong>Pros:</strong> ${info.pros ?? '-'} <br>
+        <strong>Cons:</strong> ${info.cons ?? '-'} <br>
+      `;
+    }
+
+    const stats = compData?.compRanks?.stats;
+    if (stats) {
+      const statEls = li.querySelectorAll('.statistics .stat');
+      // ordine: Damage, Range, Mobility, Durability, Utility, Controls
+      if (statEls[0]) statEls[0].textContent = `Damage: ${stats.damage}`;
+      if (statEls[1]) statEls[1].textContent = `Range: ${stats.range}`;
+      if (statEls[2]) statEls[2].textContent = `Mobility: ${stats.mobility}`;
+      if (statEls[3])
+        statEls[3].textContent = `Durability: ${stats.durability}`;
+      if (statEls[4]) statEls[4].textContent = `Utility: ${stats.utility}`;
+      if (statEls[5]) statEls[5].textContent = `Controls: ${stats.controls}`;
+    }
+
+    const synEl = li.querySelector('.champ-comp-syn');
+    if (synEl) {
+      synEl.innerHTML = `<strong>Class-Comp Synergy:</strong> ${
+        compData?.synergies?.team_comp ?? '-'
+      }`;
+    }
+
+    const botSynEl = li.querySelector('.bot-syn');
+    if (botSynEl) {
+      botSynEl.innerHTML = `<strong>Bot-lane Synergy:</strong> ${
+        compData?.synergies?.bot_lane ?? '-'
+      }`;
+    }
   }
 
   _cancelEdit(li, oldName) {
