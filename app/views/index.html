@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DraftPick</title>
     <link rel="stylesheet" href="../views/css/general.css" />
+    <link rel="stylesheet" href="../views/css/homeView.css">
     <link rel="stylesheet" href="../views/css/teamView.css" />
 
     <script defer type="module" src="../scripts/main.js"></script>
@@ -21,7 +22,118 @@
       </nav>
     </header>
     <main>
-      <section class="view" id='home-view'></section>
+      <section class="view" id='home-view'>
+      <div class="home-hero">
+          <h2 class="section-title">DraftPick</h2>
+          <p class="home-subtitle">
+            A tool for building, evaluating, and saving team compositions for your team in a structured
+way.
+          </p>
+      </div>
+
+      <!-- WHAT IS -->
+      <div class="home-block home-about">
+        <div class="home-block__header">
+          <h3 class="title">What it is and what it is used for</h3>
+        </div>
+        <div class="home-block__body">
+          <p class="home-paragraph">
+           DraftPick helps you think about drafting and team identity: choose a
+composition archetype, insert champions by role, and view
+useful metrics (stats, synergies, gank potential), to help your team to win in ranked que or clash.
+          </p>
+        </div>
+      </div>
+
+      <!-- VIEWS OVERVIEW -->
+      <div class="home-block home-views">
+        <div class="home-block__header">
+          <h3 class="title">The available views</h3>
+        </div>
+
+        <div class="home-block__body">
+          <div class="home-views__grid">
+
+            <div class="home-card home-card--theory">
+              <div class="home-card__header">
+                <h4 class="home-card__title">Theory</h4>
+              </div>
+              <div class="home-card__body">
+                <p class="home-card__text">
+                  Theoretical section: explains the concepts on which Team Builder is based
+(archetypes, classes, synergies, metrics).
+                </p>
+              </div>
+            </div>
+
+            <div class="home-card home-card--team">
+              <div class="home-card__header">
+                <h4 class="home-card__title">Team</h4>
+              </div>
+              <div class="home-card__body">
+                <p class="home-card__text">
+                  Team Builder: Create and manage team compositions, including ranking and synergies.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW TO -->
+      <div class="home-block home-howto">
+        <div class="home-block__header">
+          <h3 class="title">How to use the Team Builder</h3>
+        </div>
+
+        <div class="home-block__body">
+          <div class="home-howto__steps">
+            <div class="home-step">
+              <div class="home-step__index">1</div>
+              <div class="home-step__content">
+                <p class="home-step__title">Create a composition</p>
+                <p class="home-step__text">
+                  Press “Add New Composition” and give the composition a name.
+                </p>
+              </div>
+            </div>
+
+            <div class="home-step">
+              <div class="home-step__index">2</div>
+              <div class="home-step__content">
+                <p class="home-step__title">Scegli l’archetipo</p>
+                <p class="home-step__text">
+                 Select the type (Charge, Catch, Protect, Siege, Split). This
+                  determines the identity, game plan, and win conditions.
+                </p>
+              </div>
+            </div>
+
+            <div class="home-step">
+              <div class="home-step__index">3</div>
+              <div class="home-step__content">
+                <p class="home-step__title">Enter the champions by role</p>
+                <p class="home-step__text">
+                  Add Top/Jungle/Mid/Bot/Support from the sample grid. You can
+                  replace a sample by clicking its icon.
+                </p>
+              </div>
+            </div>
+
+            <div class="home-step">
+              <div class="home-step__index">4</div>
+              <div class="home-step__content">
+                <p class="home-step__title">Leggi i risultati e salva</p>
+                <p class="home-step__text">
+                  Check stats, synergies (team and bot lane), and gank potential,
+                    then save your composition.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
       <section class="view" id='theory-view'></section>
       <section class="view" id='team-view'>
         <h2 class="section-title">Team Builder</h2>

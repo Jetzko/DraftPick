@@ -1,4 +1,4 @@
-#team-view {
+#team-view.active {
     padding: 2rem;
     display: grid;
     grid-template: repeat(4, auto) / 1fr 1fr;

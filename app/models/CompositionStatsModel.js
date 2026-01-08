@@ -29,9 +29,9 @@ export class CompositionStatsModel {
         d: ['assassin', 'artillery'],
       },
       siege: {
-        s: ['warden', 'enchanter', 'artillery'],
-        a: ['burst', 'battlemage', 'hyper', 'bully'],
-        b: ['juggernaut', 'catcher'],
+        s: ['warden', 'enchanter', 'artillery', 'scout'],
+        a: ['burst', 'battlemage', 'bully'],
+        b: ['juggernaut', 'catcher', 'hyper'],
         c: ['assassin', 'vanguard'],
         d: ['skirmisher', 'diver'],
       },
@@ -356,9 +356,9 @@ export class CompositionStatsModel {
 
       const totalCC = (jPS.crowdControl ?? 1) + (lPS.crowdControl ?? 1);
 
-      if (totalDamage >= 5 && totalCC >= 5) return 'S';
-      if (totalDamage >= 4 && totalCC >= 4) return 'A';
-      if (totalDamage >= 3 && totalCC >= 3) return 'B';
+      if (totalDamage >= 5 && totalCC >= 5) return 'Strong';
+      if (totalDamage >= 4 && totalCC >= 4) return 'Average';
+      if (totalDamage >= 3 && totalCC >= 3) return 'Weak';
 
       return 'C';
     };

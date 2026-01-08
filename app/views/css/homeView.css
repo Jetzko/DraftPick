@@ -1,0 +1,164 @@
+#home-view.active {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* HERO (simile a una view-section) */
+.home-hero {
+  padding: 2rem;
+  background-color: var(--grey);
+  color: var(--light-grey);
+  border: solid 2px var(--light-grey);
+  border-radius: 4px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+.home-hero .section-title {
+  justify-self: center;
+  color: var(--gold);
+  font-size: var(--title);
+}
+
+.home-subtitle {
+  font-size: var(--paragraph);
+  line-height: 1.5;
+  max-width: 80ch;
+  justify-self: center;
+  text-align: center;
+}
+
+/* BLOCKS (stesso look delle .view-section in teamView) */
+.home-block {
+  padding: 2rem;
+  background-color: var(--grey);
+  color: var(--light-grey);
+  border-radius: 4px;
+  border: solid 2px var(--light-grey);
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1.2rem;
+}
+
+.home-block__header .title {
+  font-size: var(--title);
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+
+.home-block__body {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.home-paragraph {
+  font-size: var(--paragraph);
+  line-height: 1.55;
+}
+
+/* VIEWS GRID (cards stile comp/panel) */
+.home-views__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+.home-card {
+  border: solid 1px var(--grey);
+  background-color: var(--dark-grey);
+  padding: 1.6rem;
+  border-radius: 4px;
+}
+
+.home-card__title {
+  font-size: var(--subtitle);
+  color: var(--gold);
+  padding-bottom: 0.6rem;
+  border-bottom: solid 1px var(--light-grey);
+  margin-bottom: 1rem;
+}
+
+.home-card__text {
+  font-size: var(--paragraph);
+  line-height: 1.5;
+}
+
+/* HOW TO (steps stile "righe" con border come tier blocks) */
+.home-howto__steps {
+  display: grid;
+  gap: 1rem;
+}
+
+.home-step {
+  border: solid 1px var(--grey);
+  padding: 1.2rem;
+  border-radius: 4px;
+  background-color: var(--dark-grey);
+
+  display: grid;
+  grid-template-columns: 3.2rem 1fr;
+  gap: 1.2rem;
+  align-items: start;
+}
+
+.home-step__index {
+  width: 3.2rem;
+  height: 3.2rem;
+  display: grid;
+  place-items: center;
+
+  background-color: var(--white);
+  color: var(--grey);
+  border-radius: 4px;
+  font-size: var(--paragraph);
+  font-weight: var(--medium);
+}
+
+.home-step__title {
+  font-size: var(--paragraph);
+  font-weight: var(--medium);
+  margin-bottom: 0.4rem;
+  color: var(--light-grey);
+}
+
+.home-step__text {
+  font-size: var(--paragraph);
+  line-height: 1.5;
+  color: var(--light-grey);
+}
+
+.home-howto__note {
+  border-top: solid 1px var(--light-grey);
+  padding-top: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .home-views__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  #home-view {
+    padding: 1.2rem;
+  }
+
+  .home-hero,
+  .home-block {
+    padding: 1.2rem;
+  }
+
+  .home-step {
+    grid-template-columns: 1fr;
+  }
+
+  .home-step__index {
+    justify-self: start;
+  }
+}

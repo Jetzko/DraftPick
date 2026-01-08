@@ -172,7 +172,7 @@ body{
 }
 
 .view {
-    visibility: hidden;
+    display: none;
 }
 
 .view.active {

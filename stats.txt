@@ -58,6 +58,262 @@ Rogue
 https://www.youtube.com/watch?v=d1wD3AabLb8
 https://www.youtube.com/watch?v=X9CUp5a-uIM
 
+Composizioni
+
+- Come si vince a League of Legends?
+
+Per vincere in questo gioco, bisogna distruggere il Nexus avversario. 
+E per distruggere il Nexus bisogna distruggere tutte le torri di almeno una corsia.
+Bisogna quindi avere il controllo delle strutture.
+Ci sono degli obiettivi neutrali, presenti nella mappa, 
+che conquistati aiutano notevolmente nel controllo delle strutture.
+Bisogna avere, quindi, il controllo degli obiettivi.
+Per ottenerlo bisogna esercitare pressione sulla mappa, e per farlo ci sono solo 2 modi: avere campioni più forti di quelli avversari, o compiere decisioni migliori.
+Ogni campione ed ogni classe presente, hanno dei chiari punti di forza e debolezza, e non sono sempre forti in egual modo per tutta la durata della partita. 
+Inoltre acquisendo esperienza e oro attraverso l'uccisione di cs e campioni nemici, fortifica il campione.
+Quindi elemento chiave per vincere è sapere come e quando applicare la pressione sulla mappa, in base a queste informazioni.
+E dato che si gioca in 10, la composizione della propria squadra e quella avversaria, impone delle strategie di base da applicare per massimizzare le possibilità di vittoria. 
+Avere una strategia ben chiara su come affrontare ogni partita prima che essa cominci, sapere quali sono le condizioni di vittoria e di sconfitta è fondamentale.
+Per fortuna non bisogna conoscere ogni singolo campione per avere un'idea sommaria di come affrontarlo, in quanto questi sono divisi in classi.
+E anche per le diverse formazioni si sono assestati nel tempo 5 diverse con tipologie di campioni e obiettivi diversi.
+
+- Team Compositions:
+
+1- SPLIT 
+   Key Attributes: Strong duelist, strong wave clear, disengage
+   Identity: Lanes oriented
+   Game Plan: Funnel resorces to split carry, take early advantages, stall team fights to let splitter to push 
+   Win Conditions: Split enemies apart
+   Pros: Massive pressure in multiple lanes
+   Cons: High risk, high macro knowledge required
+
+2- PROTECT
+   Key Attributes: Hyper scaling threat, disengage, utility
+   Identity: Teamfight oriented
+   Game Plan: Scale to late game, do not over aggro, force team fights at objectives when carry is on spike
+   Win Conditions: 5v5 team fights, keep carry alive
+   Pros: Very safe and tilting, strong against popular comps
+   Cons: Must stay grouped as 5, extremely carry dependent
+
+3- CHARGE
+   Key Attributes: At least 1 hard engager, hard cc, massive AOE damage and/or high dps
+   Identity: Teamfight oriented
+   Game Plan: Scale early game, teamfight at objectives as 5 
+   Win Conditions: Team fighting with ultimates, wombo combo
+   Pros: Easy to execute
+   Cons: Ultimate dependent
+
+4- SIEGE
+   Key Attributes: Long range, tower damage, disengage
+   Identity: Objectives oriented
+   Game Plan: Get advantage early game, poke enemies at objectives to make them retire
+   Win Conditions: Grind out opponents, objectives oriented
+   Pros: Great objective control
+   Cons: Required extreme patience and coordination
+
+5- CATCH
+   Key Attributes: Burst damage, single target hard cc, mobility
+   Identity: Skirmish and Kills oriented
+   Game Plan: Get advantage early game, set vision around objectives to ambush, get enemies out of position
+   Win Conditions: Unfair Fights 5v4, vision denial
+   Pros: Punishes mistakes/greed
+   Cons: Weaker 5v5 fighting
+
+Ogni comp ha naturalmente 1 hard counter e un soft counter e sua volta è hard counter e soft counter di una comp. 
+
+- Hard Counters
+
+SPLIT >>> PROTECT 
+Protect vuole essere ingaggiato, vuole team fight 5v5 agli obiettivi. 
+Split annulla questo vantaggio vincendo di push e con le schermaglie, 
+dividendo il team avversario, che separato è debole oppure non ingaggiando mai lo scontro, stallandolo. 
+Inoltre Split tende a prendere vantaggio nelle fasi iniziali della partita,
+proprio quando Protect è più debole.
+TIPS
+Split:
+- All on the split-pusher's shoulders
+- Wave clear mid
+- Do not team fight
+- Track enemy movements 
+Protect:
+- Bait fights
+- Need pushing power
+- Need to stall out split pusher
+- Baron can win or lose you game
+
+PROTECT >>> CHARGE
+Charge vuole ingaggiare in scontri 5v5 agli obiettivi, 
+ma Protect vuole proprio questo e ha tutti gli strumenti per gestirlo.
+Si traduce in uno scontro dove le caratteristiche di mobilità dei campioni per l'ingaggio,
+incontrano caratteristiche di utilità, danni e resistenze, rendendo lo scontro impari.
+TIPS
+Protect:
+- Play safe early
+- Team fight late game
+- Stay grouped
+- Threaten Drake / Baron
+Charge:
+- Fight early
+- Don't fight 5v5 late
+- Split team into multiple groups
+- Pressure lanes prior to objectives
+
+CHARGE >>> SIEGE
+Siege vuole rimanere sulle lunghe distanze agli obiettivi e fare una guerra di attrito,
+non vuole ingaggi rapidi, ma una metodica demolizione delle resistenze avversarie skillshot dopo skillshot.
+Charge impedisce proprio questo avendo la possibilità di accorciare rapidamente la distanza e 
+con una combinazione di abilità esplodere il team avversario, 
+che tendenzialmente è composto da campioni fragili, rendendolo il counter numero 1.
+TIPS
+Charge:
+- Be decisive
+- Utilize flanks
+- Target carries
+- Get sustain items
+Siege:
+- Get advantage early
+- Tower advantage key
+- Don't get cocky
+- Ward flanks
+- Stall fights as long as possible
+- Disingage essential to winning
+
+SIEGE >>> CATCH
+Catch vuole prendere vantaggio nelle fasi iniziali della partita, controllare la visione di mappa
+e preparare imboscate su campioni isolati e fuori posizione.
+Tendenzialmente questo con Siege non succede, in quanto si muove sempre in 5, gioca molto cauto e 
+calcolato, ha molto più range e strumenti di disingaggio, che annullano le aggressioni su un singolo target.
+Inoltre Siege tende ad avere vantaggio su tutte le fasi della partita contro Catch, 
+perché early non è abusabile come altre teamfight comp, e negli scontri a squadre è più forte.
+TIPS
+Siege:
+- Be slow, methodical and deliberate
+- Should be stronger in 5v5 fights
+- Avoid face checking
+- Threaten most valuable objective possible
+Catch:
+- Vision control/denial essential
+- Pressure multiple objectives
+- Must be decisive
+- Look for picks in rotations
+
+
+CATCH >>> SPLIT
+Split vuole separarsi, applicare pressione su corsie differenti 
+e stallare gli scontri mentre lo split-pusher distrugge le strutture 
+costringendo gli avversari ad impiegare 2 o 3 campioni per gestirlo, 
+permettendo al resto della squadra di prendere obiettivi in vantaggio numerico.
+Catch specializzato in aggressioni ad un target singolo, non lo permette, 
+in quanto ha tutti gli strumenti sia per vincere scontri 5v4, 
+sia è capace di uccidere rapidamente lo split-pusher.
+TIPS
+Catch:
+- Must shut down split pusher
+- Use summoner spells to get kills
+- Bait their team into following
+Split:
+- Split-pusher needs to be able to 1v2
+- Hide allies near split-pusher
+- Pressure objectives when they go for a pick
+
+- Soft Counters
+
+SPLIT > SIEGE
+Split gestisce la forza in early game di Siege e in late game ha il vantaggio che non ha interesse 
+a prendere rapidamente gli obiettivi, ma stallarli, così che lo split-pusher possa fare il suo lavoro,
+e Split a differenza di altre Team Fight comp non ha gli strumenti né per forzare un obiettivo, 
+né per liberarsi facilmente dello split-pusher.
+Siege ha comunque la possibilità di contestare l'early game di Split e deve farlo, 
+per prendere un vantaggio che può divenire ingestibile per gli avversari.
+TIPS
+Split:
+- Funnel resources into split-pusher
+- Itemize for wave clear and sustain
+- If you're even, you're winning
+Siege:
+- Early game essential
+- Need to push, take lots of plates & get tower advantage
+- Get rift herald
+- Keep them on their side of the map
+
+SIEGE > PROTECT
+Entrambe le squadre vogliono vincere agli obiettivi in 5v5, ma SPlit ha il vantaggio in early game
+di potenza di campioni, e in late ha molto più range di Protect, che non ha gli strumenti per ridurre le distanze
+divenendo un facile tiro al bersaglio per un immobile team nemico.
+Protect rimane comunque il team da scontri 5v5 più forte, e Siege può sopravvalutare la propria potenza
+dopo i primi scambi di colpi e ingaggiare precocemente per vedersi annientati nello scontro. 
+TIPS
+Siege:
+- Avoid team fights
+- Focus carries with poke
+- Be patient
+- Skill shot accuracy essential
+Protect:
+- Must start fights
+- Play around power spikes
+- Be decisive
+- Use summoner spells to start fights
+- Vision denial key
+
+PROTECT > CATCH
+Protect è specializzato nel proteggere i prorpi membri, nel resistere e applicare alti danni
+e vincere gli scontri agli obiettivi, tutto ciò non va a favore di Catch che vorrebbe uccidere 
+rapidamente un target e ingaggiare uno scontro in 5v4. Se Protect gioca unito e metodico, per Catch
+non esiste modo in late game di vincere. Però Catch è molto forte in early game, e può facilmente 
+abusare il team nemico se prende vantaggio o se dividendo i nemici tra le lanes con la pressione, 
+prepara un'imboscata, ne trova uno fuori posizione e lo elimina.
+TIPS
+Protect:
+- Stay grouped
+- Only tanks face check
+- March down mid
+- Be first to objectives
+- Be extremely cautious when split
+Catch:
+- Force skirmishes early and often
+- Be decisive
+- Vision control key
+- Rotate between objectives
+
+CATCH > CHARGE
+Catch ha il vantaggio in early game, può facilmente abusare Charge nelle schermaglie iniziali, 
+prendere vantaggio di visione e preparare le sue imboscate. Charge non ha gli strumenti per gestire
+bene questo tipo di aggressioni, inoltre spesso se perde anche solo un membro della squadra,
+il suo potenziale di ingaggio si riduce notevolmente, rendnedolo inefficacie.
+Tuttavia Charge ha sempre il vantaggio in late game, per gli scontri agli obiettivi, 
+e Catch può sopravvalutare la sua forza in uno scontro 5v5 per via del suo vantaggio accumulato
+e ingaggiando, facendo così il gioco degli avversari.
+TIPS
+Catch: 
+- Force early skirmishes
+- Avoid 5v5 team fights
+- Vision Control
+- Pressure side lanes and look for ambushes on isolate targets
+- Bait out ultimates
+Charge:
+- Stick together
+- Play safe early
+- Mid game team fights
+- Bait Drake/Baron
+
+CHARGE > SPLIT
+Charge ha il vantaggio di poter ingorare lo stallo che Split vuole attuare 
+e forzare i 4 membri di Split agli obiettivi, questi in 4 non hanno la forza di respingerli.
+Inoltre Charge ha gli strumenti per raggiungere lo split-pusher fuori posizione ed eliminarlo.
+In compenso Split tende ad avere vantaggio early game e a vincere nelle corsie, 
+obiettivo diverso di Charge che vorrebbe i nemici raggruppati agli obiettivi.  
+TIPS
+Charge:
+- Camp split pusher early
+- Deny vision
+- Force fights at neutral objectives
+- Dive enemy team
+Split:
+- Funnel esources into split pusher
+- Track enemy team
+- Vision control key
+- Look for steals, not fights
+
 Dati Necessari per il calcolo dei team power points
 - Classi Campioni:
 
@@ -135,49 +391,7 @@ Wardens stand steadfast, seeking to hold the line by persistently locking down a
 who try to pass them. Wardens keep their allies out of harm’s way 
 and allow them to safely deal with enemies caught in the fray.
 
-- Archetipi Team:
-1- SPLIT 
-   Key Attributes: Strong duelist, strong wave clear, disengage
-   Identity: Lanes oriented
-   Game Plan: Funnel resorces to split carry, take early advantages, stall team fights to let splitter to push 
-   Win Conditions: Split enemies apart
-   Pros: Massive pressure in multiple lanes
-   Cons: High risk, high macro knowledge required
 
-2- PROTECT
-   Key Attributes: Hyper scaling threat, disengage, utility
-   Identity: Teamfight oriented
-   Game Plan: Scale to late game, do not over aggro, force team fights at objectives when carry is on spike
-   Win Conditions: 5v5 team fights, keep carry alive
-   Pros: Very safe and tilting, strong against popular comps
-   Cons: Must stay grouped as 5, extremely carry dependent
-
-3- CHARGE
-   Key Attributes: At least 1 hard engager, hard cc, massive AOE damage and/or high dps
-   Identity: Teamfight oriented
-   Game Plan: Scale early game, teamfight at objectives as 5 
-   Win Conditions: Team fighting with ultimates, wombo combo
-   Pros: Easy to execute
-   Cons: Ultimate dependent
-
-4- SIEGE
-   Key Attributes: Long range, tower damage, disengage
-   Identity: Objectives oriented
-   Game Plan: Get advantage early game, poke enemies at objectives to make them retire
-   Win Conditions: Grind out opponents, objectives oriented
-   Pros: Great objective control
-   Cons: Required extreme patience and coordination
-
-5- CATCH
-   Key Attributes: Burst damage, single target hard cc, mobility
-   Identity: Skirmish and Kills oriented
-   Game Plan: Get advantage early game, set vision around objectives to ambush, get enemies out of position
-   Win Conditions: Unfair Fights 5v4, vision denial
-   Pros: Punishes mistakes/greed
-   Cons: Weaker 5v5 fighting
-
-
- 
 - Sinergia campione-comp
          CHARGE           CATCH           PROTECT           SIEGE           SPLIT
 ASS      J,M(B)           J,M(S)           J,M(D)           J,M(C)          J,M(A)
@@ -198,23 +412,13 @@ HYP    T,J,M,B(S)       T,J,M,B(C)       T,J,M,B(S)       T,J,M,B(A)      T,J,M,
 
 TIER LIST
   CHARGE               CATCH                     PROTECT          SIEGE             SPLIT
-S VAN,BUR,HYP,SCO      ASS,DIV,CAT,BUR,BUL       WAR,ENC,HYP      WAR,ENC,ART,      SKI,JUG,BUL
+S VAN,BUR,HYP,SCO      ASS,DIV,CAT,BUR,BUL       WAR,ENC,HYP      WAR,ENC,ART,SCO   SKI,JUG,BUL
 A DIV,ART,BAT,BUL      VAN,SCO                   JUG,BAT,SCO      BUR,BAT,HYP,BUL   ASS,WAR,ENC,SCO
 B ASS,SKI,WAR,CAT      SKI,JUG,WAR,ART,BAT       DIV,VAN,CAT,BUL  JUG,CAT           DIV,CAT,BAT,HYP
 C JUG,ENC              HYP                       SKI,BUR          ASS,VAN           VAN,BUR
 D ///                  ENC                       ASS,ART          SKI,DIV           ART
 
-SPLIT >>> PROTECT
-PROTECT >>> CHARGE
-CHARGE >>> SIEGE
-SIEGE >>> CATCH
-CATCH >>> SPLIT
 
-SPLIT > SIEGE
-SIEGE > PROTECT
-PROTECT > CATCH
-CATCH > CHARGE
-CHARGE > SPLIT
 
 - Statistiche Campioni
         DAMAGE     ENDURANCE     CONTROLS     MOBILITY       UTILITY        RANGE

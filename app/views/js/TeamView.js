@@ -644,12 +644,15 @@ export class TeamView {
         }</p>
         <p class="bot-syn"><strong>Bot-lane Synergy: </strong> ${
           compData.synergies?.bot_lane ?? '-'
-        }</p>
-        <p class="jungle-syn"><strong>Gank Top:</strong> ${
+        }
+        </p>
+        <p class="jungle-syn">
+        <strong>Jungler-Support Synergy:</strong> ${
+          compData.compRanks.gank.bot
+        }<br>
+        <strong>Gank Top:</strong> ${
           compData.compRanks.gank.top
-        }<br><strong>Gank Mid:</strong> ${
-      compData.compRanks.gank.mid
-    }<br><strong>Gank Bot:</strong> ${compData.compRanks.gank.bot}</p>
+        }<br><strong>Gank Mid:</strong> ${compData.compRanks.gank.mid}</p>
       </div>
     </div>
     `;
@@ -809,6 +812,16 @@ export class TeamView {
       botSynEl.innerHTML = `<strong>Bot-lane Synergy:</strong> ${
         compData?.synergies?.bot_lane ?? '-'
       }`;
+    }
+
+    const gankEl = li.querySelector('.jungle-syn');
+    const gank = compData?.compRanks?.gank;
+    if (gankEl && gank) {
+      gankEl.innerHTML = `
+        <strong>Jungler-Support Synergy:</strong> ${compData.compRanks.gank.bot}<br>
+        <strong>Gank Top:</strong> ${compData.compRanks.gank.top}<br>
+        <strong>Gank Mid:</strong> ${compData.compRanks.gank.mid}
+      `;
     }
   }
 
