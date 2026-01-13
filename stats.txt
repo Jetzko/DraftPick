@@ -410,14 +410,42 @@ SCO     T,M,B(S)         T,M,B(A)         T,M,B(B)         T,M,B(S)        T,M,B
 HYP    T,J,M,B(S)       T,J,M,B(C)       T,J,M,B(S)       T,J,M,B(A)      T,J,M,B(B)
 
 
-TIER LIST
-  CHARGE               CATCH                     PROTECT          SIEGE             SPLIT
-S VAN,BUR,HYP,SCO      ASS,DIV,CAT,BUR,BUL       WAR,ENC,HYP      WAR,ENC,ART,SCO   SKI,JUG,BUL
-A DIV,ART,BAT,BUL      VAN,SCO                   JUG,BAT,SCO      BUR,BAT,HYP,BUL   ASS,WAR,ENC,SCO
-B ASS,SKI,WAR,CAT      SKI,JUG,WAR,ART,BAT       DIV,VAN,CAT,BUL  JUG,CAT           DIV,CAT,BAT,HYP
-C JUG,ENC              HYP                       SKI,BUR          ASS,VAN           VAN,BUR
-D ///                  ENC                       ASS,ART          SKI,DIV           ART
+TIER LISTS
 
+  CHARGE                           
+S VAN,BUR,HYP,SCO                  
+A DIV,ART,BAT,BUL                  
+B ASS,SKI,WAR,CAT                  
+C JUG,ENC                          
+D ///                              
+
+  SPLIT
+S SKI,JUG,BUL
+A ASS,WAR,ENC,SCO
+B DIV,CAT,BAT,HYP
+C VAN,BUR
+D ART
+
+  SIEGE          
+S WAR,ENC,ART,SCO
+A BUR,BAT,HYP,BUL
+B JUG,CAT        
+C ASS,VAN        
+D SKI,DIV        
+
+  PROTECT        
+S WAR,ENC,HYP    
+A JUG,BAT,SCO    
+B DIV,VAN,CAT,BUL
+C SKI,BUR        
+D ASS,ART        
+
+  CATCH              
+S ASS,DIV,CAT,BUR,BUL
+A VAN,SCO            
+B SKI,JUG,WAR,ART,BAT
+C HYP                
+D ENC                
 
 
 - Statistiche Campioni

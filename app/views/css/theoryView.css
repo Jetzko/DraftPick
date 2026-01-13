@@ -1,0 +1,325 @@
+#theory-view.active {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* HERO (same look as .home-hero) */
+.theory-hero {
+  padding: 2rem;
+  background-color: var(--grey);
+  color: var(--light-grey);
+  border: solid 2px var(--light-grey);
+  border-radius: 4px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+/* If your hero is empty (as now), avoid an awkward big box */
+.theory-hero:empty {
+  display: none;
+}
+
+/* MAIN WRAPPER */
+.theory-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* =============== */
+/* SECTION BLOCKS (same as .home-block) */
+/* =============== */
+
+.champ-classes-container,
+.team-comp-container,
+.game-plan {
+  padding: 2rem;
+  background-color: var(--grey);
+  color: var(--light-grey);
+  border-radius: 4px;
+  border: solid 2px var(--light-grey);
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1.2rem;
+}
+
+/* Titles inside theory sections */
+.game-plan-title,
+.comp-counters .subtitle {
+  font-size: var(--title);
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+
+/* =============== */
+/* CHAMPION CLASSES (cards like home cards) */
+/* =============== */
+
+.champ-classes-container .champ-classes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+/* Optional: keep cards aligned nicely */
+.champ-classes-container .champ-class {
+  height: 100%;
+}
+
+.classes-title.title {
+  font-size: var(--title);
+  color: var(--gold);
+  margin: 0 0 0.6rem 0;
+}
+
+.champ-classes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: grid;
+  gap: 1rem;
+}
+
+.champ-class {
+  border: solid 1px var(--grey);
+  background-color: var(--dark-grey);
+  padding: 1.6rem;
+  border-radius: 4px;
+}
+
+.class-title {
+  font-size: var(--subtitle);
+  color: var(--gold);
+  padding-bottom: 0.6rem;
+  border-bottom: solid 1px var(--gold);
+  margin-bottom: 1rem;
+}
+
+.class-description {
+  font-size: var(--paragraph);
+  line-height: 1.55;
+  color: var(--light-grey);
+  margin: 0;
+}
+
+/* =============== */
+/* TEAM COMPS (grid like home-views__grid) */
+/* =============== */
+
+.team-comp-theory-title {
+  font-size: var(--title);
+  color: var(--gold);
+  margin: 0 0 0.6rem 0;
+}
+
+/* opzionale: se vuoi una riga separatrice come le card title */
+.team-comp-theory-title::after {
+  content: "";
+  display: block;
+  margin-top: 0.6rem;
+  border-bottom: solid 1px var(--light-grey);
+  opacity: 0.9;
+}
+
+
+.team-comp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  align-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+.team-comp-list > :last-child:nth-child(odd) {
+  grid-column: 1 / -1;     /* occupa entrambe le colonne */
+  justify-self: center;    /* centra la card nella riga */
+  width: 100%;
+  max-width: 520px;        /* opzionale: evita card troppo larga */
+}
+
+.theory-comp {
+  border: solid 1px var(--grey);
+  background-color: var(--dark-grey);
+  padding: 1.6rem;
+  border-radius: 4px;
+}
+
+.comp-title {
+  font-size: var(--subtitle);
+  color: var(--gold);
+  padding-bottom: 0.6rem;
+  border-bottom: solid 1px var(--gold);
+  margin: 0 0 1rem 0;
+}
+
+.comp-description {
+  font-size: var(--paragraph);
+  line-height: 1.55;
+  color: var(--light-grey);
+  margin: 0;
+}
+
+/* =============== */
+/* COUNTERS (rows like home-step, but without index) */
+/* =============== */
+
+.comp-counters {
+  display: grid;
+  gap: 1.6rem;
+  margin-top: 1rem;
+}
+
+.counter-list,
+.counter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+/* If odd number of items, center the last one */
+.counter-list > :last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: 520px; /* optional: avoid an over-wide last card */
+}
+
+.counter {
+  border: solid 1px var(--grey);
+  padding: 1.2rem;
+  border-radius: 4px;
+  background-color: var(--dark-grey);
+
+  display: grid;
+  gap: 0.8rem;
+}
+
+.counter-title {
+  font-size: var(--subtitle);
+  color: var(--gold);
+  padding-bottom: 0.6rem;
+  border-bottom: solid 1px var(--gold);
+  margin: 0;
+}
+
+.counter-description,
+.counter-tips {
+  font-size: var(--paragraph);
+  line-height: 1.55;
+  color: var(--light-grey);
+  margin: 0;
+}
+
+/* =============== */
+/* HOW TO (ordered list styled like steps, with CSS counter index) */
+/* =============== */
+
+.how-to {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  display: grid;
+  gap: 1rem;
+
+  counter-reset: theoryStep;
+}
+
+.step {
+  counter-increment: theoryStep;
+
+  border: solid 1px var(--grey);
+  padding: 1.2rem;
+  border-radius: 4px;
+  background-color: var(--dark-grey);
+
+  display: grid;
+  grid-template-columns: 3.2rem 1fr; /* number | content */
+  grid-template-rows: auto auto;     /* title row | description row */
+  column-gap: 1.2rem;
+  row-gap: 0.6rem;
+  align-items: start;
+}
+
+.step::before {
+  content: counter(theoryStep);
+  width: 3.2rem;
+  height: 3.2rem;
+
+  grid-column: 1;
+  grid-row: 1;
+
+  display: grid;
+  place-items: center;
+
+  background-color: var(--gold);
+  color: var(--dark-grey);
+  border-radius: 4px;
+  font-size: var(--paragraph);
+  font-weight: var(--medium);
+}
+
+.step-title {
+  grid-column: 2;
+  grid-row: 1;
+
+  margin: 0;
+  align-self: center; /* aligns with the number box */
+  font-size: var(--paragraph);
+  font-weight: var(--medium);
+  color: var(--gold);
+}
+
+.step-description {
+  grid-column: 2;
+  grid-row: 2;
+
+  margin: 0;
+  font-size: var(--paragraph);
+  line-height: 1.55;
+  color: var(--light-grey);
+}
+
+/* =============== */
+/* Responsive (same breakpoints as homeView) */
+/* =============== */
+
+/* @media (max-width: 900px) {
+  .team-comp-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  #theory-view.active {
+    padding: 1.2rem;
+  }
+
+  .champ-classes-container,
+  .team-comp-container,
+  .game-plan,
+  .theory-hero {
+    padding: 1.2rem;
+  }
+
+  .step {
+    grid-template-columns: 1fr;
+  }
+
+  .step::before {
+    justify-self: start;
+  }
+} */

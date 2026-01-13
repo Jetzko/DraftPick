@@ -141,7 +141,28 @@ export class TeamView {
     champions.forEach((c) => {
       const li = document.createElement('li');
       li.classList.add('champ');
-      li.dataset.champKey = c.key || c.name;
+
+      const champKey = c.key || c.name;
+      li.dataset.champKey = champKey;
+
+      // ✅ indicizzazione per ricerca: nome + classes + roles + tag
+      const classes = Array.isArray(c.classes) ? c.classes : [];
+      const roles = Array.isArray(c.roles) ? c.roles : [];
+      const tag1 = c?.championTagInfo?.championTagPrimary ?? '';
+      const tag2 = c?.championTagInfo?.championTagSecondary ?? '';
+
+      li.dataset.search = [
+        champKey,
+        c.name ?? '',
+        ...classes,
+        ...roles,
+        tag1,
+        tag2,
+      ]
+        .join(' ')
+        .toLowerCase()
+        .trim();
+
       li.innerHTML = `<img src="${c.icon}" alt="${c.name} icon" class="champ-logo" />`;
       this.champList.appendChild(li);
       champElements.push(li);
@@ -194,6 +215,7 @@ export class TeamView {
   }
 
   addChamp(champElements, championsData) {
+    this._championsData = Array.isArray(championsData) ? championsData : [];
     if (champElements && Array.isArray(champElements)) {
       champElements.forEach((el) =>
         el.addEventListener('click', () => {
@@ -364,16 +386,25 @@ export class TeamView {
   }
 
   filterChampions(searchTerm) {
-    const search = (searchTerm || '').toLowerCase().trim();
+    const search = String(searchTerm || '')
+      .toLowerCase()
+      .trim();
     const champEls = this.champList.querySelectorAll('.champ:not(.delete)');
 
     champEls.forEach((li) => {
-      const champKey = (li.dataset.champKey || '').toLowerCase();
-      if (!search || champKey.indexOf(search) > -1) {
+      if (!search) {
         li.style.display = '';
-      } else {
-        li.style.display = 'none';
+        return;
       }
+
+      // ✅ match su nome O classi O ruoli (e tag se presenti)
+      const haystack = (
+        li.dataset.search ||
+        li.dataset.champKey ||
+        ''
+      ).toLowerCase();
+
+      li.style.display = haystack.includes(search) ? '' : 'none';
     });
   }
 

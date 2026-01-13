@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../views/css/general.css" />
     <link rel="stylesheet" href="../views/css/homeView.css">
     <link rel="stylesheet" href="../views/css/teamView.css" />
+    <link rel="stylesheet" href="../views/css/theoryView.css">
 
     <script defer type="module" src="../scripts/main.js"></script>
   </head>
@@ -91,6 +92,26 @@ useful metrics (stats, synergies, gank potential), to help your team to win in r
             <div class="home-step">
               <div class="home-step__index">1</div>
               <div class="home-step__content">
+                <p class="home-step__title">Add your champion pool</p>
+                <p class="home-step__text">
+                  For each player add your best champions clicking "+".
+                </p>
+              </div>
+            </div>
+
+            <div class="home-step">
+              <div class="home-step__index">2</div>
+              <div class="home-step__content">
+                <p class="home-step__title">Select your blind-picks</p>
+                <p class="home-step__text">
+                  Look at your full champion pool, patch's meta and competitive scene to see what champions are strong blind picks.
+                </p>
+              </div>
+            </div>
+
+            <div class="home-step">
+              <div class="home-step__index">3</div>
+              <div class="home-step__content">
                 <p class="home-step__title">Create a composition</p>
                 <p class="home-step__text">
                   Press “Add New Composition” and give the composition a name.
@@ -99,9 +120,9 @@ useful metrics (stats, synergies, gank potential), to help your team to win in r
             </div>
 
             <div class="home-step">
-              <div class="home-step__index">2</div>
+              <div class="home-step__index">4</div>
               <div class="home-step__content">
-                <p class="home-step__title">Scegli l’archetipo</p>
+                <p class="home-step__title">Choose team's archetype</p>
                 <p class="home-step__text">
                  Select the type (Charge, Catch, Protect, Siege, Split). This
                   determines the identity, game plan, and win conditions.
@@ -110,7 +131,7 @@ useful metrics (stats, synergies, gank potential), to help your team to win in r
             </div>
 
             <div class="home-step">
-              <div class="home-step__index">3</div>
+              <div class="home-step__index">5</div>
               <div class="home-step__content">
                 <p class="home-step__title">Enter the champions by role</p>
                 <p class="home-step__text">
@@ -121,9 +142,9 @@ useful metrics (stats, synergies, gank potential), to help your team to win in r
             </div>
 
             <div class="home-step">
-              <div class="home-step__index">4</div>
+              <div class="home-step__index">6</div>
               <div class="home-step__content">
-                <p class="home-step__title">Leggi i risultati e salva</p>
+                <p class="home-step__title">Read results and save</p>
                 <p class="home-step__text">
                   Check stats, synergies (team and bot lane), and gank potential,
                     then save your composition.
@@ -134,7 +155,483 @@ useful metrics (stats, synergies, gank potential), to help your team to win in r
         </div>
       </div>
       </section>
-      <section class="view" id='theory-view'></section>
+      <section class="view" id='theory-view'>
+        <div class="theory-hero"></div>
+        <div class="theory-main">
+          <div class="champ-classes-container">
+            <h3 class="classes-title title">Champion Classes</h3>
+            <ul class="champ-classes">
+              <li class="champ-class">
+                <p class="class-title">Vanguard</p>
+                <p class="class-description">Vanguards are offensive tanks. 
+Vanguards lead the charge for their team and specialize at bringing the action. 
+Their explosive team fight initiation seeks to catch enemies out of position while allowing allies to follow-up to devastating effect.</p>
+              </li> 
+              <li class="champ-class">
+                <p class="class-title">Warden</p>
+                <p class="class-description">Wardens are defensive tanks. 
+Wardens stand steadfast, seeking to hold the line by persistently locking down any on-comers 
+who try to pass them. Wardens keep their allies out of harm’s way 
+and allow them to safely deal with enemies caught in the fray.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Diver</p>
+                <p class="class-description">Divers are the more mobile portion of the Fighter class. 
+Divers excel at singling out high-priority targets to blitz toward, 
+immediately forcing those targets (and their teammates) to deal with the diver’s presence. 
+Divers are not as durable as the tanks or juggernauts of the world, 
+but Divers can take their fair share of punishment 
+while bringing enough damage to be a real kill threat if left unchecked.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Juggernaut</p>
+                <p class="class-description">Juggernauts are melee titans who relentlessly march down the opposition 
+and devastate those foolish enough to get within their grasp. 
+They are the only subclass who excel at both dealing and taking significant amounts of damage, 
+but in turn they have a tough time closing in on targets
+ due to their low range and extremely limited mobility.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Assassin</p>
+                <p class="class-description">Assassins specialize in infiltrating enemy lines with their unrivaled mobility
+ to quickly dispatch high-priority targets. 
+Due to their mostly melee nature, Assassins must put themselves into dangerous positions 
+in order to execute their targets. 
+Luckily, they often have defensive tricks up their sleeves that, if used cleverly, allow them to effectively avoid incoming damage.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Skirmisher</p>
+                <p class="class-description">Skirmishers (also known as Duelists) aim to shred through any nearby enemy that approaches. 
+Because Skirmishers lack high-end burst damage or reliable ways of closing in on high-priority targets, 
+they are instead armed with situationally powerful defensive tools to survive in the fray,
+ along with extreme sustained damage to cut down even the most durable targets.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Hypercarry</p>
+                <p class="class-description">Hypercarries are marksmen with the highest damage per second potential of the game.
+They tend to be weak in early game and scale on late. Their goal is to melt enemies in mid-late game teamfights
+due to their toolkit, but need to have team memebers who protect them because of their low mobility.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Lane-Bully</p>
+                <p class="class-description">Lane-bullies are marksmen with high lane dominance, thanks to their good damage on early game and range,
+their goal is to push out of lane their opponents and take advantage from early kills, towers and
+early objectives. Also they have higher burst damage and less dps, 
+so tend to be less efficient in late team fights.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Scout</p>
+                <p class="class-description">Scouts are most well rounded and most spell reliant marksmen, they tend to have more utility then other marksmen's classes, 
+providing vision, controls or good poke damage from their high range spells.
+Scouts are generally good in all pahses of the game and perform in a large variety of compositions.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Artillery</p>
+                <p class="class-description">Artillery mages are the masters of range, 
+and they leverage that advantage to whittle down their opponents over time from great distances. 
+In turn, Artillery Mages are severely punished when enemies finally succeed in closing in on them,
+due to their extreme fragility and limited mobility.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Battlemage</p>
+                <p class="class-description">Battlemages get into the middle of the fray, seeking to wreak havoc upon the entire enemy team 
+with their overwhelming sustained area damage. 
+Due to their relatively short (but not melee) combat ranges and the need to burn down their opponents over time, 
+Battle Mages have significant defensive capabilities that range from sustaining endlessly 
+to literally defying death for a short period of time.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Burst</p>
+                <p class="class-description">Burst mages aim to single out vulnerable targets by locking them down 
+and following up with a devastating barrage of damage from range. 
+They are strongest when using their full suite of spells executed perfectly to maximum effect, 
+and most vulnerable when they cannot deliver.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Catcher</p>
+                <p class="class-description">Catchers specialize in locking down opponents or, in some cases, 
+entire battlefields by creating intense zones of threat 
+that only foolish enemies would dare wade through. 
+Although not as reliant on their friends as Enchanters, 
+the fragile Catchers greatly benefit from allied presence - 
+both to deter incoming danger and to help capitalize on targets they've locked down.</p>
+              </li>
+              <li class="champ-class">
+                <p class="class-title">Enchanter</p>
+                <p class="class-description">Enchanters focus on amplifying their allies' effectiveness 
+by directly augmenting them and defending them from incoming threats. 
+Enchanters themselves are often quite fragile and bring relatively low damage to the table, 
+meaning they really only shine when grouped together with others.</p>
+              </li> 
+            </ul>
+          </div>
+          <div class="team-comp-container">
+            <h3 class="title team-comp-theory-title"></h3>
+            <ul class="team-comp-list">
+              <li class="theory-comp">
+                <p class="comp-title">CHARGE</p>
+                <p class="comp-description">
+                  Key Attributes: Strong duelist, strong wave clear, disengage <br>
+                  Identity: Lanes oriented <br>
+                  Game Plan: Funnel resorces to split carry, take early advantages, stall team fights to let splitter to push  <br>
+                  Win Conditions: Split enemies apart <br>
+                  Pros: Massive pressure in multiple lanes <br>
+                  Cons: High risk, high macro knowledge required</p>
+              </li>
+              <li class="theory-comp">
+                <p class="comp-title">PROTECT</p>
+                <p class="comp-description">
+                  Key Attributes: Hyper scaling threat, disengage, utility <br>
+                  Identity: Teamfight oriented <br>
+                  Game Plan: Scale to late game, do not over aggro, force team fights at objectives when carry is on spike <br>
+                  Win Conditions: 5v5 team fights, keep carry alive <br>
+                  Pros: Very safe and tilting, strong against popular comps <br>
+                  Cons: Must stay grouped as 5, extremely carry dependent</p>
+              </li>
+              <li class="theory-comp">
+                <p class="comp-title">SPLIT</p>
+                <p class="comp-description">
+                  Key Attributes: Strong duelist, strong wave clear, disengage <br>
+                  Identity: Lanes oriented <br>
+                  Game Plan: Funnel resorces to split carry, take early advantages, stall team fights to let splitter to push  <br>
+                  Win Conditions: Split enemies apart <br>
+                  Pros: Massive pressure in multiple lanes <br>
+                  Cons: High risk, high macro knowledge required</p>
+              </li>
+              <li class="theory-comp">
+                <p class="comp-title">CATCH</p>
+                <p class="comp-description">
+                  Key Attributes: Burst damage, single target hard cc, mobility <br>
+                  Identity: Skirmish and Kills oriented <br>
+                   Game Plan: Get advantage early game, set vision around objectives to ambush, get enemies out of position <br>
+                   Win Conditions: Unfair Fights 5v4, vision denial <br>
+                   Pros: Punishes mistakes/greed
+                   Cons: Weaker 5v5 fighting</p>
+              </li>
+              <li class="theory-comp">
+                <p class="comp-title">SIEGE</p>
+                <p class="comp-description">
+                  Key Attributes: Long range, tower damage, disengage <br>
+                   Identity: Objectives oriented <br>
+                   Game Plan: Get advantage early game, poke enemies at objectives to make them retire <br>
+                   Win Conditions: Grind out opponents, objectives oriented <br>
+                   Pros: Great objective control <br>
+                   Cons: Required extreme patience and coordination</p>
+              </li>
+            </ul>
+
+            <div class="comp-counters">
+              <h3 class="subtitle">Hard Counters</h3>
+              <ul class="counter-list">
+                <li class="counter">
+                  <p class="counter-title">SPLIT >>> PROTECT </p>
+                  <p class="counter-description">
+Protect wants to be engaged, and wants 5v5 team fights at objectives.
+Split negates this advantage by winning pushes and skirmishes,
+by splitting the opposing team, which is weak when separated, or by never engaging in combat, stalling it.
+Furthermore, Split tends to gain an advantage early in the game,
+precisely when Protect is weakest.
+                  </p>
+                  <p class="counter-tips">
+                      TIPS
+                    Split: <br>
+                    - All on the split-pusher's shoulders <br>
+                    - Wave clear mid <br>
+                    - Do not team fight <br>
+                    - Track enemy movements  <br>
+                    Protect: <br>
+                    - Bait fights <br>
+                    - Need pushing power <br>
+                    - Need to stall out split pusher <br>
+                    - Baron can win or lose you game <br>
+                  </p>
+                </li>
+                <li class="counter">
+                  <p class="counter-title">PROTECT >>> CHARGE</p>
+                  <p class="counter-description">
+                  Charge wants to engage in 5v5 objective-based fights,
+but Protect wants just that and has all the tools to handle it.
+This translates into a matchup where the champions' mobility for engagement
+meets utility, damage, and resistances, making the matchup uneven.</p>
+                  <p class="counter-tips">TIPS <br>
+Protect: <br>
+- Play safe early <br>
+- Team fight late game <br>
+- Stay grouped <br>
+- Threaten Drake / Baron <br>
+Charge: <br>
+- Fight early <br>
+- Don't fight 5v5 late <br>
+- Split team into multiple groups <br>
+- Pressure lanes prior to objectives <br></p>
+                </li>
+                <li class="counter">
+                  <p class="counter-title">CHARGE >>> SIEGE</p>
+                  <p class="counter-description">
+              Siege wants to stay long distances on objectives and wage a war of attrition.
+It doesn't want quick engagements, but a methodical demolition of enemy resistances, skill shot after skill shot.
+Charge prevents this by having the ability to quickly close the distance and
+explode the opposing team with a combination of abilities,
+which tends to be made up of frail champions, making it the number one counter.
+                  </p>
+                  <p class="counter-tips">TIPS <br>
+Charge: <br>
+- Be decisive <br>
+- Utilize flanks <br>
+- Target carries <br>
+- Get sustain items <br>
+Siege: <br>
+- Get advantage early <br>
+- Tower advantage key <br>
+- Don't get cocky <br>
+- Ward flanks <br>
+- Stall fights as long as possible <br>
+- Disingage essential to winning <br></p>
+                </li>
+                <li class="counter">
+                  <p class="counter-title">SIEGE >>> CATCH</p>
+                  <p class="counter-description">
+                 Catch wants to gain an early advantage, control map vision,
+and set up ganks on isolated and out-of-position champions.
+This doesn't tend to happen with Siege, as he always moves with 5 players, plays very cautious and
+calculated , and has much more range and disengagement tools, which negate single-target aggression.
+Siege also tends to have an advantage over Catch in all phases of the game,
+because early isn't as easily abused as other teamfight comps, and it's stronger in teamfights.
+                  </p>
+                  <p class="counter-tips">
+                    TIPS <br>
+Siege: <br>
+- Be slow, methodical and deliberate <br>
+- Should be stronger in 5v5 fights <br>
+- Avoid face checking <br>
+- Threaten most valuable objective possible <br>
+Catch: <br>
+- Vision control/denial essential <br>
+- Pressure multiple objectives <br>
+- Must be decisive <br>
+- Look for picks in rotations <br>
+                  </p>
+                </li>
+                <li class="counter">
+                  <p class="counter-title">CATCH >>> SPLIT</p>
+                  <p class="counter-description">Split wants to separate, apply pressure on different lanes,
+and stall fights while the split-pusher destroys structures,
+forcing opponents to deploy two or three champions to deal with him,
+allowing the rest of the team to take objectives with a numerical advantage.
+Catch, specializing in single-target aggression, doesn't allow this,
+as he has all the tools to win 5v4 fights,
+and is capable of quickly killing the split-pusher.</p>
+                  <p class="counter-tips">
+                    TIPS <br>
+Catch: <br>
+- Must shut down split pusher <br>
+- Use summoner spells to get kills <br>
+- Bait their team into following <br>
+Split: <br>
+- Split-pusher needs to be able to 1v2 <br>
+- Hide allies near split-pusher <br>
+- Pressure objectives when they go for a pick <br>
+                  </p>
+                </li>
+              </ul>
+
+              <h3 class="subtitle">Soft Counters</h3>
+
+              <ul class="counter-list">
+                <li class="counter">
+                  <p class="counter-title">SPLIT > SIEGE</p>
+                  <p class="counter-description">
+Split manages Siege's early-game strength, and has the advantage in the late game that it isn't interested in
+taking objectives quickly, but in stalling them so the split-pusher can do its job.
+And Split, unlike other Team Fight comps, doesn't have the tools to force an objective,
+nor to easily get rid of the split-pusher.
+Siege still has the opportunity to challenge Split's early game, and it must do so,
+to gain an advantage that could become unmanageable for its opponents.</p>
+                  <p class="counter-tips">
+                    TIPS <br>
+Split: <br>
+- Funnel resources into split-pusher <br>
+- Itemize for wave clear and sustain <br>
+- If you're even, you're winning <br>
+Siege: <br>
+- Early game essential <br>
+- Need to push, take lots of plates & get tower advantage <br>
+- Get rift herald <br>
+- Keep them on their side of the map <br>
+                  </p>
+                </li>
+                <li class="counter">
+                  <p class="counter-title">SIEGE > PROTECT</p>
+                  <p class="counter-description">Both teams want to win 5v5 objectives, but Split has the early-game advantage
+in champion power, and has much more range than Protect in the late game, which lacks the tools to close the gap
+making it an easy target for an immobile enemy team.
+Protect remains the stronger 5v5 team, and Siege can overestimate their power
+after the initial exchanges and engage early, only to be destroyed in the fight.</p>
+                  <p class="counter-tips">
+                    TIPS <br>
+Siege: <br>
+- Avoid team fights <br>
+- Focus carries with poke <br>
+- Be patient <br>
+- Skill shot accuracy essential <br>
+Protect: <br>
+- Must start fights <br>
+- Play around power spikes <br>
+- Be decisive <br>
+- Use summoner spells to start fights <br>
+- Vision denial key <br>
+                  </p>
+                </li>
+                <li class="counter">
+                  <p class="counter-title">PROTECT > CATCH</p>
+                  <p class="counter-description">Protect specializes in protecting its members, staying power and dealing high damage,
+and winning objective fights. This doesn't work in Catch's favor, as he wants to quickly kill
+a target and engage in a 5v4 fight. If Protect plays unified and methodical, Catch
+has no way to win in the late game. However, Catch is very strong in the early game and can easily
+abuse the enemy team if he gains an advantage or, by dividing enemies between lanes with pressure,
+sets up an ambush, finds one out of position, and eliminates him.</p>
+                  <p class="counter-tips">
+                    TIPS <br>
+Protect: <br>
+- Stay grouped <br>
+- Only tanks face check <br>
+- March down mid <br>
+- Be first to objectives <br>
+- Be extremely cautious when split <br>
+Catch: <br>
+- Force skirmishes early and often <br>
+- Be decisive <br>
+- Vision control key <br>
+- Rotate between objectives <br>
+                  </p>
+                </li>
+                <li class="counter">
+                  <p class="counter-title">CATCH > CHARGE</p>
+                  <p class="counter-description">Catch has the early-game advantage and can easily abuse Charge in early skirmishes,
+gaining vision and setting up his own ambushes. Charge doesn't have the tools to handle
+this type of aggression well, and often, if he loses even one team member,
+his engagement potential is significantly reduced, making him ineffective.
+However, Charge always has the late-game advantage, for objective clashes,
+and Catch can overestimate his strength in a 5v5 matchup due to his accumulated advantage
+and engage, thus playing into the opponent's hands.</p>
+                  <p class="counter-tips">
+                    TIPS <br>
+Catch:  <br>
+- Force early skirmishes <br>
+- Avoid 5v5 team fights <br>
+- Vision Control <br>
+- Pressure side lanes and look for ambushes on isolate targets <br>
+- Bait out ultimates <br>
+Charge: <br>
+- Stick together <br>
+- Play safe early <br>
+- Mid game team fights <br>
+- Bait Drake/Baron <br>
+                  </p>
+                </li>
+                <li class="counter">
+                  <p class="counter-title">CHARGE > SPLIT</p>
+                  <p class="counter-description">Charge has the advantage of being able to ignore the stalemate Split wants to implement
+and force the four Split members onto the objectives; the four of them lack the strength to push them back.
+Furthermore, Charge has the tools to catch the out-of-position split-pusher and eliminate him.
+On the other hand, Split tends to have an early-game advantage and win in lanes,
+a different goal than Charge, which wants the enemies grouped together at the objectives.</p>
+                  <p class="counter-tips">
+                    TIPS <br>
+Charge: <br>
+- Camp split pusher early <br>
+- Deny vision <br>
+- Force fights at neutral objectives <br>
+- Dive enemy team <br>
+Split: <br>
+- Funnel esources into split pusher <br>
+- Track enemy team <br>
+- Vision control key <br>
+- Look for steals, not fights <br>
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="game-plan">
+            <h3 class="game-plan-title">How to make a team</h3>
+            <ol class="how-to">
+              <li class="step">
+                <p class="step-title">Champion Pool</p>
+                <p class="step-description">Enstablish the team champion pool. Select the best champions for each player divided by tiers. <br>
+                    S-tier is for champions who you would lock in a tourney's final. <br>
+                    A-tier is for champions that you feel confident to play. <br>
+                    Situational is for champions that are good but only in specific scenarios. <br>
+                  It's important that every one is honest at this.</p>
+              </li>
+              <li class="step">
+                <p class="step-title">Team Identity</p>
+                <p class="step-description">Starting from players game style and skill find the overall team identity. Look for the best in each player, what you enjoy to play, find who has carry potential, and who is the shotcaller.</p>
+              </li>
+              <li class="step">
+                <p class="step-title">Pick 2 Compositions</p>
+                <p class="step-description">Based on team identiy and total champion pool, choose 2 team compositions to stick with. <br>
+                Start from the most obvious one, and than chose its hard counter. This is important because of team compositions match-up system. 
+                Doing so you have the possibility to answer well enough to every enemy team, by not have to play against any hard counter if you draft well.
+                Reducing the chances to play only against soft-counters or match-ups in your favor. <br>
+                TIP: Based on your team level consider to chose Charge and Protect, because they are the easiest comps to play, and try to avoid Siege and Split because they demand the most game knowledge and coordination.</p>
+              </li>
+              <li class="step">
+                <p class="step-title">Fill the gaps</p>
+                <p class="step-description">Now each player trains some usefull champion for the team. <br>
+                  Because it's not easy to stick 5 players to one identity, 
+                  it possible that some player have to do some sacrifice and adapt more than the others. 
+                  It's time to learn some new playstyle and champion archetype based on the archetype table. <br>
+                  Look at the current patch, and based on your played archetype, look for the best picks in the meta and learn them. <br>
+                  Plus is a good idea to learn some flex and blind pick, to empower your team draft. 
+                </p>
+              </li>
+              <li class="step">
+                <p class="step-title">Learn to Draft</p>
+                <p class="step-description">
+                  The ban phase is a game before the game. Starting with advantage on the draft can shift the weights to the winning condition. <br>
+                  B = blue, R = red, 1,2,3,4,5 = first pick, second pick, third pick, forth pick, fifth pick. <br>
+                  First-Phase Ban <br>
+Blue: Counter to your B1 or Target Ban; <br>
+Red: B1 you don't want to face or Target Ban; <br>
+
+First-Phase Picks <br>
+B1: Blind and/or Flex Pick <br>
+R1, R2: Counter pick to B1, Blind and/or Flex Pick; <br>
+B2, B3: Counter pick to R1 and R2; if you took a flex pick, try not to break it (ADC), look for synergies with B1, and cover any roles at risk of being banned; <br>
+R3: A pick that rotates the team's identity if it's countered, or a specific counter pick; <br>
+
+Second-Phase Ban <br>
+Red: Counter to your R4 or Target Ban on a role not yet filled; <br>
+Blue: Possible best R4s, counters to your B4 and B5s, if you have Team Advantage pivot picks; <br>
+
+Second-Phase Picks <br>
+R4: If you have a flex pick, keep it, try to leave key roles for R5 (Top, Mid, or Support); <br>
+B4, B5: Counter the enemy team's plan or reinforce your own plan. Try to avoid champions with strong counters, and if you can't, pivot to a comp pick. <br>
+
+R5: A counter pick to the laner or the enemy plan. <br>
+
+GOLDEN RULE <br>
+Be creative with your picks; there is no objectively better or correct pick.</p>
+              </li>
+              <li class="step">
+                <p class="step-title">Master your Game</p>
+                <p class="step-description">Now play your compositions and learn every team and champions match-up. Focus on your game plan, the champions power spikes, the win conditions, how to improve the strengths, and cover the weaknesses.
+                  Learn to assign lane match-ups and rotations, when it's time to engage, to disengage, to push, to recall.
+                  Plus focus to improve your team comunication, shotcalling and coordination.
+                </p>
+              </li>
+              <li class="step">
+                <p class="step-title">Learn & Grow</p>
+                <p class="step-description">
+                  To grow as team, after you have mastered your first two team compositions, you could try to add another one and to learn its champion archetypes and playstyle. <br>
+                  Another way to improve is to as players: <br>learn the timers of items, ultimates, jungle camps;<br> learn to itemize;<br> learn the other champions power spikes and game plan;<br> learn to vision control; <br> learn to farm; <br> learn to pick your fights.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
       <section class="view" id='team-view'>
         <h2 class="section-title">Team Builder</h2>
         <div class="view-section champ-pool">
